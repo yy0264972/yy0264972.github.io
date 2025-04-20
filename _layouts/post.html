@@ -54,28 +54,13 @@ post_class: post-template
             <!-- End Adsense -->
 
             <!-- Post Featured Image -->
-       <div id="external-labels" >       <img class="featured-image img-fluid lazyimg" src="/assets/images/play.jpg" data-src="/assets/images/play.jpg" alt="{{ page.title }}"/>
+       <div class="spo" >       <img class="featured-image img-fluid lazyimg" src="/assets/images/play.jpg" data-src="/assets/images/play.jpg" alt="{{ page.title }}"/>
    </div>
             <!-- End Featured Image -->
 
             <!-- Post Content -->
             <div class="article-post">
-                <!-- Toc if any -->
-                {% if page.toc %}
-                    {% if page.beforetoc %}
-                        <p><em>{{page.beforetoc}}</em></p>
-                    {% endif %}
-                    <div class="toc mt-4 mb-4 lead">
-                        <h3 class="font-weight-bold">Summary</h3>
-                        {% include toc.html html=content %}
-                    </div>
-                {% endif %}
-                <!-- End Toc -->
-                
-                
-                
 <!-- toc 🤫🤫🤫🤫 -->
-
 <!-- Table of Contents -->
 <style>
 .toc-container {
@@ -206,7 +191,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   </style>
 
-  <div id="external-labels" >
+  <div class="spo" >
     <video 
       controls='controls'
       expr:poster='/assets/images/play.jpg"'
@@ -320,4 +305,3 @@ https://search.google.com/structured-data/testing-tool/u/0/
 }
 </script>
 {% endif %}
-
