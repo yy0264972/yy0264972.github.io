@@ -4,7 +4,39 @@ title: 404
 permalink: /404.html
 ---
 
-<div class="text-center">
-<h1 class="display-1 mt-5 mb-4"><span class="badge badge-danger">404</span> Page does not exist!</h1>
-<p>Please use the search bar at the top or visit our <a href="{{site.baseurl}}/">homepage</a>!</p>
+
+
+
+
+
+<div class="container" style="padding: 50px 20px; max-width: 800px; margin: auto;">
+  <h2 id="dynamic-title">Sedang memuat halaman...</h2>
+  <p id="dynamic-content">Kami sedang mempersiapkan konten untuk halaman ini. Sementara itu, kamu bisa melihat artikel lainnya:</p>
+
+  <ul>
+    {% for post in site.posts limit:5 %}
+      <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+    {% endfor %}
+  </ul>
+
+  <p><a href="/">Kembali ke beranda</a></p>
 </div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const path = window.location.pathname;
+    const cleanPath = decodeURIComponent(path.replace(/^\/|\/$/g, '').replace(/[-_]/g, ' '));
+    const titleText = cleanPath.length > 0
+      ? `Konten untuk "${cleanPath}" akan segera hadir!`
+      : "Halaman tidak ditemukan.";
+
+    document.getElementById("dynamic-title").innerText = titleText;
+  });
+</script>
+
+
+
+
+
+
+
