@@ -82,6 +82,7 @@ post_class: post-template
                 
                 
 <!-- toc 🤫🤫🤫🤫 -->
+
 <!-- Table of Contents -->
 <style>
 .toc-container {
@@ -118,7 +119,7 @@ post_class: post-template
 </style>
 
 <div class="toc-container" id="toc-container">
-  <h2>{{ page.title }}</h2>
+  <h3>Table of Contents</h3>
   <ul id="toc-list"></ul>
 </div>
 
@@ -134,15 +135,34 @@ document.addEventListener("DOMContentLoaded", function () {
     return;
   }
 
-  headings.forEach((heading, index) => {
-    if (!heading.id) {
-      heading.id = "toc-" + index;
+  const usedIds = new Set();
+
+  function slugify(text) {
+    return text.toLowerCase()
+      .trim()
+      .replace(/[^\w\s-]/g, '')   // Hapus karakter spesial
+      .replace(/\s+/g, '-')       // Ganti spasi dengan tanda hubung
+      .replace(/-+/g, '-');       // Gabungkan tanda hubung ganda
+  }
+
+  headings.forEach((heading) => {
+    const text = heading.textContent.trim();
+    let id = slugify(text);
+    let uniqueId = id;
+    let counter = 1;
+
+    while (usedIds.has(uniqueId)) {
+      uniqueId = id + '-' + counter;
+      counter++;
     }
+    usedIds.add(uniqueId);
+
+    heading.id = uniqueId;
 
     const li = document.createElement("li");
     const a = document.createElement("a");
-    a.href = "#" + heading.id;
-    a.textContent = heading.textContent;
+    a.href = "#" + uniqueId;
+    a.textContent = text;
 
     const level = parseInt(heading.tagName.replace("H", ""), 10);
     li.className = "toc-level-" + level;
