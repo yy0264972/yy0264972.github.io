@@ -54,15 +54,8 @@ post_class: post-template
             <!-- End Adsense -->
 
             <!-- Post Featured Image -->
-            {% if page.image %}
-
-            {% if site.lazyimages == "enabled" %}
-            <img class="featured-image img-fluid lazyimg" src="/assets/images/play.jpg" data-src="/assets/images/play.jpg" alt="{{ page.title }}">
-            {% else %}
-            <img class="featured-image img-fluid" src="/assets/images/play.jpg" alt="{{ page.title }}">
-            {% endif %}
-
-            {% endif %}
+              <img class="featured-image img-fluid lazyimg" src="/assets/images/play.jpg" data-src="/assets/images/play.jpg" alt="{{ page.title }}">
+   
             <!-- End Featured Image -->
 
             <!-- Post Content -->
