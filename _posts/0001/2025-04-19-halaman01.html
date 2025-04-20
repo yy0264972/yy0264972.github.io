@@ -68,15 +68,15 @@ description: "Discover how GitHub Pages can be a powerful, cost-free tool for di
 </script>
 
 
-<div id="external-labels"></div>
+
+<div class="spo" id="external-labels" aria-label="Related Labels"></div>
 
 <script>
   function rak_info_Load(json) {
-    let labelsSet = new Set();
+    const labelsSet = new Set();
     const posts = json.feed.entry;
     if (!posts) return;
 
-    // Kumpulkan semua label dari Blogger
     posts.forEach(post => {
       if (post.category) {
         post.category.forEach(cat => {
@@ -88,38 +88,17 @@ description: "Discover how GitHub Pages can be a powerful, cost-free tool for di
     const labels = Array.from(labelsSet);
     const container = document.getElementById("external-labels");
 
-    let html = '<div class="post-labels"><strong>Tags:</strong><ul style="list-style:none; padding:0; display:flex; flex-wrap:wrap; gap:10px;">';
-    labels.forEach(label => {
-      // Ganti link URL dengan daftar postingan GitHub Pages
-      html += `<li><span style="background:#eee; padding:5px 10px; border-radius:5px;">${label}</span>`;
-      html += '<ul style="list-style:none; padding-left:20px;">';
+    let html = '<section class="post-labels"><strong>Labels:</strong><ul style="list-style:none;padding:0;margin:0;">';
 
-      // Menambahkan daftar postingan dari GitHub Pages
-      {% for post in site.posts %}
-        html += `<li><a href="{{ post.url }}" style="color:#333;">{{ post.title }}</a></li>`;
-      {% endfor %}
-
-      html += '</ul></li>';
+    labels.forEach((label, index) => {
+      let staticPageUrl = "/halaman" + (index + 1).toString().padStart(2, '0') + "/"; // Contoh: /halaman01/
+      html += `<li style="display:inline;margin-right:10px;"><a href="${staticPageUrl}" target="_blank">${label}</a></li>`;
     });
-    html += '</ul></div>';
+
+    html += '</ul></section>';
     container.innerHTML = html;
   }
 </script>
 
-<!-- Panggil feed Blogger -->
-<script src="https://fazri.my.id/feeds/posts/default?start-index=40&max-results=10&alt=json-in-script&callback=rak_info_Load"></script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<script src="https://fazri.my.id/feeds/posts/default?start-index=53&max-results=3&alt=json-in-script&callback=rak_info_Load"></script>
 
