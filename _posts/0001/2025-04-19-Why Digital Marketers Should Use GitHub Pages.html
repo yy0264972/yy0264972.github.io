@@ -68,10 +68,46 @@ description: "Discover how GitHub Pages can be a powerful, cost-free tool for di
 </script>
 
 
-<div style="height:500px;overflow:auto;" loading="lazy"><hr /><br /><br /><br />
-<script src="https://rawgit.com/rezamuhamad/rakinfo/master/sitemap.js"></script>
-<script src="https://fazri.my.id/feeds/posts/default/?start-index=50&max-results=10&alt=json-in-script&callback=rak_info_Load"></script>
-</div>
+<div id="external-labels"></div>
+
+<script>
+  function rak_info_Load(json) {
+    let labelsSet = new Set();
+    const posts = json.feed.entry;
+    if (!posts) return;
+
+    // Kumpulkan semua label dari Blogger
+    posts.forEach(post => {
+      if (post.category) {
+        post.category.forEach(cat => {
+          labelsSet.add(cat.term);
+        });
+      }
+    });
+
+    const labels = Array.from(labelsSet);
+    const container = document.getElementById("external-labels");
+
+    let html = '<div class="post-labels"><strong>Tags:</strong><ul style="list-style:none; padding:0; display:flex; flex-wrap:wrap; gap:10px;">';
+    labels.forEach(label => {
+      // Ganti link URL dengan daftar postingan GitHub Pages
+      html += `<li><span style="background:#eee; padding:5px 10px; border-radius:5px;">${label}</span>`;
+      html += '<ul style="list-style:none; padding-left:20px;">';
+
+      // Menambahkan daftar postingan dari GitHub Pages
+      {% for post in site.posts %}
+        html += `<li><a href="{{ post.url }}" style="color:#333;">{{ post.title }}</a></li>`;
+      {% endfor %}
+
+      html += '</ul></li>';
+    });
+    html += '</ul></div>';
+    container.innerHTML = html;
+  }
+</script>
+
+<!-- Panggil feed Blogger -->
+<script src="https://fazri.my.id/feeds/posts/default?start-index=40&max-results=10&alt=json-in-script&callback=rak_info_Load"></script>
 
 
 
