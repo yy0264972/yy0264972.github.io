@@ -1,7 +1,7 @@
 ---
 layout: default
 disqus: false
-archive: false
+archive: true
 post_class: post-template
 ---
 
@@ -21,7 +21,7 @@ post_class: post-template
         <div class="col-md-9 flex-first flex-md-unordered">
             <div class="mainheading">
 
-                <!-- Author Box -->
+                <!-- Author Box --
                 {% if page.author %}
                 <div class="row post-top-meta">
                     <div class="col-xs-12 col-md-3 col-lg-2 text-center text-md-left mb-4 mb-md-0">
@@ -37,9 +37,9 @@ post_class: post-template
                     </div>
                 </div>
                 {% endif %}
-
+-->
                 <!-- Post Title -->
-                <h1 class="posttitle">{{ page.title }}</h1>
+                <h2 class="posttitle">{{ page.title }}</h2>
 
             </div>
 
@@ -94,7 +94,7 @@ post_class: post-template
                 </small>
             </p>
 
-            <!-- Post Categories -->
+            <!-- Post Categories 
             <div class="after-post-cats">
                 <ul class="tags mb-4">
                     {% assign sortedCategories = page.categories | sort %}
@@ -105,9 +105,9 @@ post_class: post-template
                     {% endfor %}
                 </ul>
             </div>
-            <!-- End Categories -->
+             End Categories -->
 
-            <!-- Post Tags -->
+            <!-- Post Tags 
             <div class="after-post-tags">
                 <ul class="tags">
                     {% assign sortedTags = page.tags | sort %}
@@ -118,7 +118,7 @@ post_class: post-template
                     {% endfor %}
                 </ul>
             </div>
-            <!-- End Tags -->
+            -- End Tags -->
 
             <!-- Prev/Next -->
             <div class="row PageNavigation d-flex justify-content-between font-weight-bold">
@@ -130,7 +130,7 @@ post_class: post-template
             {% endif %}
             <div class="clearfix"></div>
             </div>
-            <!-- End Categories -->
+           <!-- End Categories -->
 
         </div>
         <!-- End Post -->
@@ -141,7 +141,7 @@ post_class: post-template
 ================================================== -->
 
 <!-- Begin Comments
-================================================== -->
+================================================== --
 {% if page.comments != false %}
     <div class="container">
         <div id="comments" class="row justify-content-center mb-5">
@@ -151,7 +151,7 @@ post_class: post-template
         </div>
     </div>
 {% endif %}
-<!--End Comments
+--End Comments
 ================================================== -->
 
 <!-- Review with LD-JSON, adapt it for your needs if you like, but make sure you test the generated HTML source code first: 
