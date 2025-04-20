@@ -39,7 +39,75 @@ post_class: post-template
                 {% endif %}
 -->
                 <!-- Post Title -->
-                <h2 class="posttitle">{{ page.title }}</h2>
+                
+
+<!-- toc 🤫🤫🤫🤫 -->
+
+                <!-- Table of Contents -->
+<style>
+#custom-toc {
+  background: #f2f2f2;
+  padding: 16px;
+  margin: 30px 0;
+  border-left: 4px solid #3498db;
+  font-size: 15px;
+}
+#custom-toc nav ul {
+  padding-left: 20px;
+  margin: 0;
+}
+#custom-toc nav li {
+  margin: 5px 0;
+  list-style-type: disc;
+}
+#custom-toc nav a {
+  color: #3498db;
+  text-decoration: none;
+}
+#custom-toc nav a:hover {
+  text-decoration: underline;
+}
+</style>
+
+<div id="custom-toc">
+  <strong>
+      <h2 class="posttitle">{{ page.title }}</h2>
+  </strong>
+  <nav id="custom-toc-list"></nav>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const article = document.querySelector(".post-content");
+  const toc = document.getElementById("custom-toc-list");
+
+  if (!article || !toc) return;
+
+  const headers = article.querySelectorAll("h2, h3");
+  if (headers.length === 0) {
+    document.getElementById("custom-toc").style.display = "none";
+    return;
+  }
+
+  const ul = document.createElement("ul");
+  headers.forEach((h, i) => {
+    if (!h.id) h.id = "heading-" + i;
+    const li = document.createElement("li");
+    const a = document.createElement("a");
+    a.href = "#" + h.id;
+    a.textContent = h.textContent;
+    li.appendChild(a);
+    ul.appendChild(li);
+  });
+
+  toc.appendChild(ul);
+});
+</script>
+
+   <!-- 😂😍😀😀😂 -->             
+
+
+                
 
             </div>
 
