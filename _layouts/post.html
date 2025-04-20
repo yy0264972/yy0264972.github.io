@@ -82,68 +82,76 @@ post_class: post-template
                 
                 
 <!-- toc 🤫🤫🤫🤫 -->
-
-                <!-- Table of Contents -->
+<!-- Table of Contents -->
 <style>
-#custom-toc {
-  background: #f2f2f2;
+.toc-container {
+  background: #f8f9fa;
+  border-left: 4px solid #007BFF;
   padding: 16px;
-  margin: 30px 0;
-  border-left: 4px solid #3498db;
+  margin: 2em 0;
+  font-family: sans-serif;
   font-size: 15px;
 }
-#custom-toc nav ul {
-  padding-left: 20px;
-  margin: 0;
+.toc-container h3 {
+  margin-top: 0;
+  font-size: 18px;
 }
-#custom-toc nav li {
+.toc-container ul {
+  list-style: none;
+  padding-left: 0;
+}
+.toc-container li {
   margin: 5px 0;
-  list-style-type: disc;
 }
-#custom-toc nav a {
-  color: #3498db;
+.toc-container a {
   text-decoration: none;
+  color: #007BFF;
 }
-#custom-toc nav a:hover {
+.toc-container a:hover {
   text-decoration: underline;
 }
+.toc-level-2 { margin-left: 0; }
+.toc-level-3 { margin-left: 20px; }
+.toc-level-4 { margin-left: 40px; }
+.toc-level-5 { margin-left: 60px; }
+.toc-level-6 { margin-left: 80px; }
 </style>
 
-<div id="custom-toc">
-  <strong>
-      {{ page.title }}
-  </strong>
-  <nav id="custom-toc-list"></nav>
+<div class="toc-container" id="toc-container">
+  <h2>{{ page.title }}</h2>
+  <ul id="toc-list"></ul>
 </div>
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
-  const article = document.querySelector(".post-content");
-  const toc = document.getElementById("custom-toc-list");
+  const contentArea = document.querySelector(".post-content") || document.querySelector("article") || document.body;
+  const headings = contentArea.querySelectorAll("h2, h3, h4, h5, h6");
+  const tocList = document.getElementById("toc-list");
+  const tocContainer = document.getElementById("toc-container");
 
-  if (!article || !toc) return;
-
-  const headers = article.querySelectorAll("h2, h3");
-  if (headers.length === 0) {
-    document.getElementById("custom-toc").style.display = "none";
+  if (!headings.length) {
+    tocContainer.style.display = "none";
     return;
   }
 
-  const ul = document.createElement("ul");
-  headers.forEach((h, i) => {
-    if (!h.id) h.id = "heading-" + i;
+  headings.forEach((heading, index) => {
+    if (!heading.id) {
+      heading.id = "toc-" + index;
+    }
+
     const li = document.createElement("li");
     const a = document.createElement("a");
-    a.href = "#" + h.id;
-    a.textContent = h.textContent;
-    li.appendChild(a);
-    ul.appendChild(li);
-  });
+    a.href = "#" + heading.id;
+    a.textContent = heading.textContent;
 
-  toc.appendChild(ul);
+    const level = parseInt(heading.tagName.replace("H", ""), 10);
+    li.className = "toc-level-" + level;
+
+    li.appendChild(a);
+    tocList.appendChild(li);
+  });
 });
 </script>
-
    <!-- 😂😍😀😀😂 -->
                 
                 
@@ -253,7 +261,4 @@ https://search.google.com/structured-data/testing-tool/u/0/
 }
 </script>
 {% endif %}
-
-
-
 
