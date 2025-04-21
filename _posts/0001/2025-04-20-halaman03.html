@@ -59,17 +59,14 @@ description: "Learn how GitHub Pages can be used to create a professional digita
 
 
 
-
-<div id="external-labels"></div>
+<div class="spo" id="external-labels" aria-label="Related Labels"></div>
 
 <script>
-  // Fungsi untuk memuat data dari Blogger
   function rak_info_Load(json) {
     const labelsSet = new Set();
     const posts = json.feed.entry;
     if (!posts) return;
 
-    // Kumpulkan semua label dari Blogger
     posts.forEach(post => {
       if (post.category) {
         post.category.forEach(cat => {
@@ -81,22 +78,19 @@ description: "Learn how GitHub Pages can be used to create a professional digita
     const labels = Array.from(labelsSet);
     const container = document.getElementById("external-labels");
 
-    let html = '<div class="post-labels"><strong>Labels:</strong><ul style="list-style:none;">';
-    
-    // Loop untuk menampilkan label dari Blogger
-    labels.forEach((label, index) => {
-      // Ganti URL label dengan URL halaman statis dari GitHub Pages
-      let staticPageUrl = "/halaman" + (index + 1).toString().padStart(2, '0'); // Ubah sesuai dengan pola URL halaman statis
+    let html = '<section class="post-labels"><strong>Labels:</strong><ul style="list-style:none;padding:0;margin:0;">';
 
-      html += `<li><a href="${staticPageUrl}" target="_blank">${label}</a></li>`;
+    labels.forEach((label, index) => {
+      let staticPageUrl = "/halaman" + (index + 1).toString().padStart(2, '0') + "/"; // Contoh: /halaman01/
+      html += `<li style="display:inline;margin-right:10px;"><a href="${staticPageUrl}" target="_blank">${label}</a></li>`;
     });
 
-    html += '</ul></div>';
+    html += '</ul></section>';
     container.innerHTML = html;
   }
 </script>
 
-<!-- Panggil feed Blogger untuk mendapatkan label -->
-<script src="https://fazri.my.id/feeds/posts/default?start-index=40&max-results=10&alt=json-in-script&callback=rak_info_Load"></script>
+<script src="https://fazri.my.id/feeds/posts/default?start-index=55&max-results=3&alt=json-in-script&callback=rak_info_Load"></script>
+
 
 
