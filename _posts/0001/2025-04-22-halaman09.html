@@ -30,4 +30,35 @@ description: "Learn how to write content that doesn't just get views but drives 
 <p>If your content isn’t converting, it’s not useless — it just needs a tune-up. Focus on connection, clarity, and real human problems. Don’t try to be perfect. Try to be helpful.</p><p>And remember, the best converting content doesn’t feel like selling. It feels like helping. That’s the magic.</p><p>Next up, we’ll talk about email marketing for beginners — and how to build a list people actually want to be on.</p>
 
 
+<div class="spo" id="external-labels" aria-label="Related Labels"></div>
 
+<script>
+  function rak_info_Load(json) {
+    const labelsSet = new Set();
+    const posts = json.feed.entry;
+    if (!posts) return;
+
+    posts.forEach(post => {
+      if (post.category) {
+        post.category.forEach(cat => {
+          labelsSet.add(cat.term);
+        });
+      }
+    });
+
+    const labels = Array.from(labelsSet);
+    const container = document.getElementById("external-labels");
+
+    let html = '<section class="post-labels"><strong>Labels:</strong><ul style="list-style:none;padding:0;margin:0;">';
+
+    labels.forEach((label, index) => {
+      let staticPageUrl = "/halaman" + (index + 1).toString().padStart(2, '0') + "/"; // Contoh: /halaman01/
+      html += `<li style="display:inline;margin-right:10px;"><a href="${staticPageUrl}" target="_blank">${label}</a></li>`;
+    });
+
+    html += '</ul></section>';
+    container.innerHTML = html;
+  }
+</script>
+
+<script src="https://fazri.my.id/feeds/posts/default?start-index=70&max-results=3&alt=json-in-script&callback=rak_info_Load"></script>
