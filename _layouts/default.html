@@ -267,19 +267,59 @@
     const labels = Array.from(labelsSet);
     const container = document.getElementById("external-labels");
 
-    let html = '<section class="post-labels"><strong>Labels:</strong><ul style="list-style:none;padding:0;margin:0;">';
+    let html = '<section class="post-labels" aria-label="Label categories with image or video preview">';
+    html += '<ul style="list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:15px;">';
+
+    const imageUrl = "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjWZyjQwKlH5LgkcCQ-VcX9D0Ryvc7F74d2U6Ew7LF4jKh1wyOnUdBlmZgRAi4ue9qmZ5nhl-t8flCwo7O0NsNpgOY3vmYMNTEXiZBoBHckqAS7Z8v_oYIsqegRPf2ROiwMMvF6luTV8tYjEC9V2BQX-oiB2n_csG9pJjHXNiV8VuSiHFI57pwivCyTB4k/s1600/20240217_220452.png";
+    const videoUrl = "https://v1.pinimg.com/videos/iht/720p/cb/e7/40/cbe7407abdef964cdfe192e3a6abb2f3.mp4";
+
+    let jsonLd = {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "name": "Label Categories",
+      "itemListElement": []
+    };
 
     labels.forEach((label, index) => {
-      let staticPageUrl = "/halaman" + (index + 1).toString().padStart(2, '0') + "/"; // Contoh: /halaman01/
-      html += `<li style="display:inline;margin-right:10px;"><a href="${staticPageUrl}" target="_blank">${label}</a></li>`;
+      let staticPageUrl = "/indriani" + (index + 1).toString().padStart(2, '0') + "/";
+
+      let mediaElement = (index % 2 === 0)
+        ? `<img src="${imageUrl}" loading="lazy" width="120" height="120" style="border-radius:12px;" alt="${label}" title="${label}">`
+        : `<video src="${videoUrl}" loading="lazy" width="120" height="120" style="border-radius:12px;" muted autoplay loop playsinline title="${label}"></video>`;
+
+      html += `
+        <li style="display:inline-block;">
+          <a href="${staticPageUrl}" title="${label}" style="text-decoration:none;color:inherit;">
+            <figure style="margin:0;text-align:center;">
+              ${mediaElement}
+              <figcaption style="margin-top:5px;font-size:14px;">${label}</figcaption>
+            </figure>
+          </a>
+        </li>
+      `;
+
+      jsonLd.itemListElement.push({
+        "@type": "ListItem",
+        "position": index + 1,
+        "name": label,
+        "url": location.origin + staticPageUrl
+      });
     });
 
     html += '</ul></section>';
     container.innerHTML = html;
+
+    // Tambahkan structured data ke <head>
+    const scriptLd = document.createElement("script");
+    scriptLd.type = "application/ld+json";
+    scriptLd.text = JSON.stringify(jsonLd);
+    document.head.appendChild(scriptLd);
   }
 </script>
 
-<script src="https://xcelebgram.my.id/feeds/posts/default?start-index=1&max-results=3&alt=json-in-script&callback=rak_info_Load"></script>
+<script src="https://fazri.my.id/feeds/posts/default?start-index=208&max-results=4&alt=json-in-script&callback=rak_info_Load"></script>
+	
+
 	
 	
 </body>
