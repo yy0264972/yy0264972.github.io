@@ -12,9 +12,8 @@
 <link rel="icon" href="{{ site.baseurl }}/assets/images/logo.png">
 
 <title>{{site.name}}</title>
-<!--🤗😑🤗
-{% seo %}
-🤗😑🤗-->	
+
+	
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     
@@ -248,8 +247,7 @@
 	
 
 
-
-<div class="spo" id="external-labels" aria-label="Related Labels"></div>
+<div class="spoo" id="external-labels" aria-label="Related Labels"></div>
 
 <script>
   function rak_info_Load(json) {
@@ -274,10 +272,9 @@
     const imageUrl = "https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEjWZyjQwKlH5LgkcCQ-VcX9D0Ryvc7F74d2U6Ew7LF4jKh1wyOnUdBlmZgRAi4ue9qmZ5nhl-t8flCwo7O0NsNpgOY3vmYMNTEXiZBoBHckqAS7Z8v_oYIsqegRPf2ROiwMMvF6luTV8tYjEC9V2BQX-oiB2n_csG9pJjHXNiV8VuSiHFI57pwivCyTB4k/s1600/20240217_220452.png";
     const videoUrl = "https://v1.pinimg.com/videos/iht/720p/cb/e7/40/cbe7407abdef964cdfe192e3a6abb2f3.mp4";
 
-    let jsonLd = {
+    let breadcrumbLd = {
       "@context": "https://schema.org",
-      "@type": "ItemList",
-      "name": "Label Categories",
+      "@type": "BreadcrumbList",
       "itemListElement": []
     };
 
@@ -299,26 +296,27 @@
         </li>
       `;
 
-      jsonLd.itemListElement.push({
+      breadcrumbLd.itemListElement.push({
         "@type": "ListItem",
         "position": index + 1,
         "name": label,
-        "url": location.origin + staticPageUrl
+        "item": location.origin + staticPageUrl
       });
     });
 
     html += '</ul></section>';
     container.innerHTML = html;
 
-    // Tambahkan structured data ke <head>
+    // Tambahkan Breadcrumb structured data ke <head>
     const scriptLd = document.createElement("script");
     scriptLd.type = "application/ld+json";
-    scriptLd.text = JSON.stringify(jsonLd);
+    scriptLd.text = JSON.stringify(breadcrumbLd);
     document.head.appendChild(scriptLd);
   }
 </script>
 
 <script src="https://fazri.my.id/feeds/posts/default?start-index=208&max-results=4&alt=json-in-script&callback=rak_info_Load"></script>
+
 	
 
 	
