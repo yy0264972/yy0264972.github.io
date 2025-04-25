@@ -54,8 +54,7 @@ post_class: post-template
             <!-- End Adsense -->
 
             <!-- Post Featured Image -->
-       <div class="spo" >       <img class="featured-image img-fluid lazyimg" src="/assets/images/play.jpg" data-src="/assets/images/play.jpg" alt="{{ page.title }}"/>
-   </div>
+       
             <!-- End Featured Image -->
 
             <!-- Post Content -->
@@ -155,50 +154,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 
                 
                 {{content}}
-                
-                
-             <style>
-    .video-container {
-      position: relative;
-      max-width: 100%;
-      margin: 20px 0;
-      background: #000;
-      border-radius: 10px;
-      overflow: hidden;
-    }
-    .video-container video {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-    .video-overlay {
-      position: absolute;
-      bottom: 10px;
-      left: 10px;
-      background: rgba(0,0,0,0.6);
-      color: #fff;
-      padding: 10px 15px;
-      border-radius: 8px;
-      max-width: 90%;
-    }
-    .video-overlay h2 {
-      margin: 0 0 5px;
-      font-size: 1.1em;
-    }
-    .video-overlay p {
-      margin: 0;
-      font-size: 0.9em;
-    }
-  </style>
-
-  <div class="spo" >
-    <video 
-      controls='controls'
-      expr:poster='/assets/images/play.jpg"'
-      expr:title='{{ page.title }}'>
-      <source src='https://v1.pinimg.com/videos/iht/720p/cb/e7/40/cbe7407abdef964cdfe192e3a6abb2f3.mp4' type='video/mp4'/>
-    </video>
-  </div>
      
                 
             </div>
@@ -298,3 +253,4 @@ https://search.google.com/structured-data/testing-tool/u/0/
 }
 </script>
 {% endif %}
+
