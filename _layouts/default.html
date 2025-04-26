@@ -120,12 +120,84 @@
 ================================================== -->
 <div class="main-content">
     {{ content }}
-</div>
 
 
 
+<div class="spooo" id="external-labels" aria-label="Related Labels"></div>
+
+<script>
+  function rak_info_Load(json) {
+    const labelsSet = new Set();
+    const posts = json.feed.entry;
+    if (!posts) return;
+
+    posts.forEach(post => {
+      if (post.category) {
+        post.category.forEach(cat => {
+          labelsSet.add(cat.term);
+        });
+      }
+    });
+
+    const labels = Array.from(labelsSet);
+    const container = document.getElementById("external-labels");
+
+    let html = '<section class="post-labels" aria-label="Label categories with image or video preview">';
+    html += '<ul style="list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:15px;">';
+
+    const imageUrl = "/foto.png";
+    const videoUrl = "/video.mp4";
+
+    let breadcrumbLd = {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": []
+    };
+
+    labels.forEach((label, index) => {
+      let staticPageUrl = "/indriani" + (index + 1).toString().padStart(2, '0') + "/";
+
+      let mediaElement = (index % 2 === 0)
+        ? `<img src="${imageUrl}" loading="lazy" width="100%" height="auto" style="border-radius:12px;" alt="${label}" title="${label}">`
+        : `<video src="${videoUrl}" loading="lazy" width="100%" height="auto" style="border-radius:12px;" muted autoplay loop playsinline title="${label}"></video>`;
+
+      html += `
+        <li style="display:inline-block;">
+          <a href="${staticPageUrl}" title="${label}" style="text-decoration:none;color:inherit;">
+            <figure style="margin:0;text-align:center;">
+              ${mediaElement}
+              <figcaption style="margin-top:5px;font-size:14px;">${label}</figcaption>
+            </figure>
+          </a>
+        </li>
+      `;
+
+      breadcrumbLd.itemListElement.push({
+        "@type": "ListItem",
+        "position": index + 1,
+        "name": label,
+        "item": location.origin + staticPageUrl
+      });
+    });
+
+    html += '</ul></section>';
+    container.innerHTML = html;
+
+    // Tambahkan Breadcrumb structured data ke <head>
+    const scriptLd = document.createElement("script");
+    scriptLd.type = "application/ld+json";
+    scriptLd.text = JSON.stringify(breadcrumbLd);
+    document.head.appendChild(scriptLd);
+  }
+</script>
+
+
+	
+
+	
 {% if page.url == '/page2/' %}
-😝😇😝😙  <p>Ini hanya muncul di halaman Page 2!</p>
+<script src="https://xcelebgram.my.id/feeds/posts/default?start-index=1&max-results=3&alt=json-in-script&callback=rak_info_Load"></script>
+		
 {% endif %}
 {% if page.url == '/page3/' %}
 🤣😇☺😝  <p>Ini hanya muncul di halaman Page 3!</p>
@@ -139,6 +211,7 @@
 
 
 
+</div>
 	
 
 <!-- Begin Footer
@@ -256,77 +329,6 @@
 	
 
 
-<div class="spo" id="external-labels" aria-label="Related Labels"></div>
-
-<script>
-  function rak_info_Load(json) {
-    const labelsSet = new Set();
-    const posts = json.feed.entry;
-    if (!posts) return;
-
-    posts.forEach(post => {
-      if (post.category) {
-        post.category.forEach(cat => {
-          labelsSet.add(cat.term);
-        });
-      }
-    });
-
-    const labels = Array.from(labelsSet);
-    const container = document.getElementById("external-labels");
-
-    let html = '<section class="post-labels" aria-label="Label categories with image or video preview">';
-    html += '<ul style="list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:15px;">';
-
-    const imageUrl = "/foto.png";
-    const videoUrl = "/video.mp4";
-
-    let breadcrumbLd = {
-      "@context": "https://schema.org",
-      "@type": "BreadcrumbList",
-      "itemListElement": []
-    };
-
-    labels.forEach((label, index) => {
-      let staticPageUrl = "/indriani" + (index + 1).toString().padStart(2, '0') + "/";
-
-      let mediaElement = (index % 2 === 0)
-        ? `<img src="${imageUrl}" loading="lazy" width="100%" height="auto" style="border-radius:12px;" alt="${label}" title="${label}">`
-        : `<video src="${videoUrl}" loading="lazy" width="100%" height="auto" style="border-radius:12px;" muted autoplay loop playsinline title="${label}"></video>`;
-
-      html += `
-        <li style="display:inline-block;">
-          <a href="${staticPageUrl}" title="${label}" style="text-decoration:none;color:inherit;">
-            <figure style="margin:0;text-align:center;">
-              ${mediaElement}
-              <figcaption style="margin-top:5px;font-size:14px;">${label}</figcaption>
-            </figure>
-          </a>
-        </li>
-      `;
-
-      breadcrumbLd.itemListElement.push({
-        "@type": "ListItem",
-        "position": index + 1,
-        "name": label,
-        "item": location.origin + staticPageUrl
-      });
-    });
-
-    html += '</ul></section>';
-    container.innerHTML = html;
-
-    // Tambahkan Breadcrumb structured data ke <head>
-    const scriptLd = document.createElement("script");
-    scriptLd.type = "application/ld+json";
-    scriptLd.text = JSON.stringify(breadcrumbLd);
-    document.head.appendChild(scriptLd);
-  }
-</script>
-
-<script src="https://xcelebgram.my.id/feeds/posts/default?start-index=1&max-results=30&alt=json-in-script&callback=rak_info_Load"></script>
-	
-	
 	
 </body>
 </html>
