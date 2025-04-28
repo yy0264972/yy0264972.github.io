@@ -118,6 +118,30 @@
     </p>
 </div>-->
 
+
+<div class="col-12 mb-4">
+  <div class="mb-3 fw-bold" style="font-size:1.5rem;">Featured Posts</div>
+  <div class="row">
+    {% for post in site.categories.monetization limit: 3 %}
+    <div class="col-md-4 col-sm-6 mb-4">
+      <div class="card h-100 border-0 shadow-sm">
+        <a href="{{ post.url | relative_url }}" class="text-decoration-none">
+          <div class="card-body">
+            <div class="card-title fw-semibold mb-2" style="font-size:1.25rem; max-width:100%;">{{ post.title }}</div>
+            {% if post.excerpt %}
+              <div class="card-text small text-muted">{{ post.excerpt | strip_html | truncate: 120 }}</div>
+            {% else %}
+              <div class="card-text small text-muted">{{ post.content | strip_html | truncate: 120 }}</div>
+            {% endif %}
+          </div>
+        </a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+	
+	
 <!-- Content
 ================================================== -->
 <div class="main-content">
