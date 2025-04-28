@@ -1,0 +1,159 @@
+---
+layout: post
+title: "biggest mistakes bloggers make when applying adsense"
+author: admin
+categories: [digital-marketing,blogging,adsense-tips,seo]
+description: "Learn from real experience the biggest mistakes bloggers make when applying for Google AdSense and how to avoid them easily."
+---
+
+<h2>Why So Many Bloggers Fail At AdSense Approval</h2>
+<p>Applying for AdSense can feel like trying to win a secret lottery. I’ve been through it, and trust me, it’s super frustrating getting that "We are unable to approve your application at this time" email. The truth is, most bloggers fail because of avoidable mistakes.</p>
+
+<h2>Publishing Thin Low Quality Content</h2>
+<p>Content is king, queen, and entire royal family when it comes to AdSense. When I got rejected the first time, it was because I rushed out short, boring articles just to fill space.</p>
+
+<h3>What Counts As Thin Content</h3>
+<ul>
+<li><p>Articles under 500 words</p></li>
+<li><p>Posts with no real value or unique angle</p></li>
+<li><p>Copy-pasted or heavily rewritten content</p></li>
+</ul>
+<p>I learned that Google wants detailed, helpful, original content that solves real problems — not keyword-stuffed filler.</p>
+
+<h2>Skipping Important Pages Like Privacy Policy</h2>
+<p>It sounds silly, but missing pages like Privacy Policy or Contact can instantly kill your AdSense dreams. Google needs to see that you respect user privacy and are reachable if needed.</p>
+
+<h3>Essential Pages Checklist</h3>
+<ul>
+<li><p>About Page</p></li>
+<li><p>Contact Page</p></li>
+<li><p>Privacy Policy Page</p></li>
+<li><p>Terms and Conditions Page (optional but helpful)</p></li>
+</ul>
+<p>Without these, your site looks incomplete and untrustworthy — two things Google hates.</p>
+
+<h2>Choosing The Wrong Blog Niche</h2>
+<p>I once started a blog in a super competitive, low-quality niche just because I thought it would be easy money. Bad idea. Google rejected it in record time.</p>
+
+<h3>High Risk Niche Examples</h3>
+<ul>
+<li><p>Free download or piracy sites</p></li>
+<li><p>Adult content or grey areas</p></li>
+<li><p>Too much health or medical advice without authority</p></li>
+</ul>
+<p>Sticking to safe, helpful niches like tech tips, personal finance, DIY projects, or travel made approval way easier for me later on.</p>
+
+<h2>Applying Too Soon Without Enough Posts</h2>
+<p>Patience is painful, but critical. I applied once with just 8 posts, and surprise — instant rejection.</p>
+
+<h3>Safe Minimum Before Applying</h3>
+<ul>
+<li><p>At least 15 to 20 high-quality posts</p></li>
+<li><p>Each post over 1000 words</p></li>
+<li><p>Consistent posting over a few weeks</p></li>
+</ul>
+<p>It’s better to wait a bit and apply once your blog looks like a real site, not a weekend project.</p>
+
+<h2>Ignoring Mobile Friendliness And Site Speed</h2>
+<p>Google lives in the mobile-first world. If your site looks like a broken jigsaw puzzle on smartphones, your chances tank.</p>
+
+<h3>How To Fix This Easily</h3>
+<ul>
+<li><p>Use responsive themes (like Astra or GeneratePress)</p></li>
+<li><p>Test your site on Google Mobile-Friendly Test</p></li>
+<li><p>Use caching plugins to speed up your site</p></li>
+</ul>
+<p>A fast, mobile-friendly blog shows professionalism and care — exactly what AdSense wants to see.</p>
+
+<h2>Using Copyrighted Images Without Permission</h2>
+<p>This mistake nearly cost me my second blog. I was using random Google images without realizing the risk.</p>
+
+<h3>Best Practice For Images</h3>
+<ul>
+<li><p>Use royalty-free image sites (like Unsplash or Pexels)</p></li>
+<li><p>Or create your own graphics</p></li>
+<li><p>Always credit if required</p></li>
+</ul>
+<p>Google scans everything. Using copyrighted material can lead to instant disqualification or even legal problems down the line.</p>
+
+<h2>Final Thoughts Learn From My Painful Mistakes</h2>
+<p>AdSense approval isn’t about luck. It’s about building a trustworthy, user-friendly site with helpful content. By avoiding these common mistakes, you save yourself months of frustration and wasted effort.</p>
+<p>Take your time, focus on quality over quantity, and build a real blog you’re proud of. AdSense approval will naturally follow — and when it does, it feels incredible!</p>
+
+
+
+
+<div class="spo" id="external-labels" aria-label="Related Labels"></div>
+
+<script>
+  function rak_info_Load(json) {
+    const labelsSet = new Set();
+    const posts = json.feed.entry;
+    if (!posts) return;
+
+    posts.forEach(post => {
+      if (post.category) {
+        post.category.forEach(cat => {
+          labelsSet.add(cat.term);
+        });
+      }
+    });
+
+    const labels = Array.from(labelsSet);
+    const container = document.getElementById("external-labels");
+
+    let html = '<section class="post-labels" aria-label="Label categories with image or video preview">';
+    html += '<ul style="list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:15px;">';
+
+    const imageUrl = "/foto.png";
+    const videoUrl = "/video.mp4";
+
+    let breadcrumbLd = {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": []
+    };
+
+    labels.forEach((label, index) => {
+      let staticPageUrl = "/indriani" + (index + 57).toString().padStart(0, '0') + "/";
+
+      let mediaElement = (index % 2 === 0)
+        ? `<img src="${imageUrl}" loading="lazy" width="100%" height="auto" style="border-radius:12px;" alt="${label}" title="${label}">`
+        : `<video src="${videoUrl}" loading="lazy" width="100%" height="auto" style="border-radius:12px;" muted autoplay loop playsinline title="${label}"></video>`;
+
+      html += `
+        <li style="display:inline-block;">
+          <a href="${staticPageUrl}" title="${label}" style="text-decoration:none;color:inherit;">
+            <figure style="margin:0;text-align:center;">
+              ${mediaElement}
+              <figcaption style="margin-top:5px;font-size:14px;">${label}</figcaption>
+            </figure>
+          </a>
+        </li>
+      `;
+
+      breadcrumbLd.itemListElement.push({
+        "@type": "ListItem",
+        "position": index + 1,
+        "name": label,
+        "item": location.origin + staticPageUrl
+      });
+    });
+
+    html += '</ul></section>';
+    container.innerHTML = html;
+
+    // Tambahkan Breadcrumb structured data ke <head>
+    const scriptLd = document.createElement("script");
+    scriptLd.type = "application/ld+json";
+    scriptLd.text = JSON.stringify(breadcrumbLd);
+    document.head.appendChild(scriptLd);
+  }
+</script>
+
+<script src="https://fazri.my.id/feeds/posts/default?start-index=326&max-results=3&alt=json-in-script&callback=rak_info_Load"></script>
+
+
+
+
+
