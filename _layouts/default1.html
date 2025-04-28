@@ -131,18 +131,18 @@
 
 <br />
 	<div class="col-12 mb-4">
-  <b class="mb-3">Featured Posts</b>
+  <div class="mb-3 fw-bold" style="font-size:1.5rem;">Featured Posts</div>
   <div class="row">
-    {% for post in site.categories.blogging limit: 2 %}
+    {% for post in site.categories.social-media limit: 10 %}
     <div class="col-md-4 col-sm-6 mb-4">
       <div class="card h-100 border-0 shadow-sm">
         <a href="{{ post.url | relative_url }}" class="text-decoration-none">
           <div class="card-body">
-            <ul class="card-title h5 mb-2" style="max-width:100%;">{{ post.title }}</ul>
+            <div class="card-title fw-semibold mb-2" style="font-size:1.25rem; max-width:100%;">{{ post.title }}</div>
             {% if post.excerpt %}
-              <li class="card-text small text-muted">{{ post.excerpt | strip_html | truncate: 120 }}</li>
+              <div class="card-text small text-muted">{{ post.excerpt | strip_html | truncate: 120 }}</div>
             {% else %}
-              <li class="card-text small text-muted">{{ post.content | strip_html | truncate: 120 }}</li>
+              <div class="card-text small text-muted">{{ post.content | strip_html | truncate: 120 }}</div>
             {% endif %}
           </div>
         </a>
@@ -151,6 +151,8 @@
     {% endfor %}
   </div>
 </div>
+	
+          
 <!-- Content
 ================================================== -->
 <div class="main-content">
