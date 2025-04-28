@@ -138,11 +138,11 @@
       <div class="card h-100 border-0 shadow-sm">
         <a href="{{ post.url | relative_url }}" class="text-decoration-none">
           <div class="card-body">
-            <h3 class="card-title h5 mb-2" style="max-width:100%;">{{ post.title }}</h3>
+            <ul class="card-title h5 mb-2" style="max-width:100%;">{{ post.title }}</ul>
             {% if post.excerpt %}
-              <p class="card-text small text-muted">{{ post.excerpt | strip_html | truncate: 120 }}</p>
+              <li class="card-text small text-muted">{{ post.excerpt | strip_html | truncate: 120 }}</li>
             {% else %}
-              <p class="card-text small text-muted">{{ post.content | strip_html | truncate: 120 }}</p>
+              <li class="card-text small text-muted">{{ post.content | strip_html | truncate: 120 }}</li>
             {% endif %}
           </div>
         </a>
