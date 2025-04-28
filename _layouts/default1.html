@@ -129,6 +129,28 @@
     </p>
 </div>-->
 
+<br />
+	<div class="col-12 mb-4">
+  <b class="mb-3">Featured Posts</b>
+  <div class="row">
+    {% for post in site.categories.blogging limit: 2 %}
+    <div class="col-md-4 col-sm-6 mb-4">
+      <div class="card h-100 border-0 shadow-sm">
+        <a href="{{ post.url | relative_url }}" class="text-decoration-none">
+          <div class="card-body">
+            <h3 class="card-title h5 mb-2" style="max-width:100%;">{{ post.title }}</h3>
+            {% if post.excerpt %}
+              <p class="card-text small text-muted">{{ post.excerpt | strip_html | truncate: 120 }}</p>
+            {% else %}
+              <p class="card-text small text-muted">{{ post.content | strip_html | truncate: 120 }}</p>
+            {% endif %}
+          </div>
+        </a>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
 <!-- Content
 ================================================== -->
 <div class="main-content">
