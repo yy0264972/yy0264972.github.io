@@ -1,0 +1,135 @@
+---
+layout: post
+title: "do nofollow backlinks still help seo efforts today"
+author: admin
+categories: [seo,backlinks,nofollow,link-building]
+description: "Explore how NoFollow backlinks impact SEO, their hidden value, and why they still matter for a balanced and natural backlink profile."
+---
+
+<h2>What Are NoFollow Links?</h2>
+<p>NoFollow links are hyperlinks with a rel="nofollow" attribute, which tells search engines not to pass link equity or “link juice.” They were introduced by Google in 2005 to help fight spam in blog comments and user-generated content.</p>
+<p>So on the surface, NoFollow links sound useless for SEO, right? That’s what I thought too—until I dug deeper and saw real impact from them in multiple campaigns.</p>
+
+<h2>What Makes NoFollow Links Valuable?</h2>
+<p>Even though they don't directly boost PageRank, NoFollow links can still help SEO in multiple indirect ways. Here’s what I’ve observed in real-world use:</p>
+<ul>
+  <li><strong>Traffic Boost:</strong> A link from a high-traffic NoFollow source (like Reddit or Quora) can bring in thousands of visitors.</li>
+  <li><strong>Brand Visibility:</strong> NoFollow links from authoritative sites build awareness and trust, which supports other SEO efforts.</li>
+  <li><strong>Link Diversity:</strong> A natural backlink profile includes both DoFollow and NoFollow links. Too much DoFollow can raise red flags.</li>
+  <li><strong>Indexing Signals:</strong> Googlebot still crawls NoFollow links, so they help discover new content and pages.</li>
+</ul>
+<p>Think of them like word-of-mouth recommendations. They may not “count” the same way, but they still influence how people (and bots) see your brand.</p>
+
+<h2>Case Study: NoFollow Link That Drove SEO Growth</h2>
+<p>One client got mentioned on a Quora thread that had a NoFollow link. Within 24 hours, they saw a 17% spike in referral traffic—and two weeks later, a big keyword moved from page 3 to page 1.</p>
+<p>We traced the ripple effect: traffic surged, engagement increased, and it led to more natural DoFollow backlinks from blogs that discovered them via Quora. That single NoFollow link set off a chain reaction.</p>
+
+<h2>Where to Earn NoFollow Links That Matter</h2>
+<p>Not all NoFollow links are created equal. Here's where I've found the most value:</p>
+<ul>
+  <li><strong>Social Media Platforms:</strong> Twitter, LinkedIn, and Facebook are NoFollow—but critical for visibility.</li>
+  <li><strong>High-Authority Forums:</strong> Reddit, Stack Overflow, and Quora often generate targeted traffic.</li>
+  <li><strong>Wikipedia:</strong> While NoFollow, these links still influence user behavior and can boost topical relevance.</li>
+  <li><strong>Blog Comments (Strategically):</strong> When relevant and non-spammy, they build community and drive visits.</li>
+</ul>
+<p>If the link lives on a page that ranks well or gets traffic, it’s valuable—NoFollow or not.</p>
+
+<h2>Google’s Changing Stance on NoFollow</h2>
+<p>In 2019, Google announced that it treats NoFollow as a “hint” rather than a directive. That means they may still use the link for ranking purposes if they deem it relevant and trustworthy.</p>
+<p>This shift means NoFollow links are no longer automatically ignored. They now carry more potential weight than ever before.</p>
+
+<h2>When NoFollow Links Make Sense in Your Strategy</h2>
+<p>Here’s when I intentionally pursue NoFollow backlinks:</p>
+<ul>
+  <li>When targeting referral traffic from active communities</li>
+  <li>When trying to build brand authority on top-tier publications</li>
+  <li>To balance a backlink profile that’s too DoFollow-heavy</li>
+  <li>To spark linkable moments that attract DoFollow links later</li>
+</ul>
+<p>It’s not about chasing NoFollow for the sake of it—it’s about being strategic and natural. SEO isn’t math. It’s more like gardening. You plant seeds everywhere.</p>
+
+<h2>Best Practices for Getting High-Value NoFollow Links</h2>
+<p>If you’re going after NoFollow links, focus on these tactics:</p>
+<ul>
+  <li><strong>Create shareable content:</strong> Lists, how-tos, and stats get shared even on NoFollow platforms.</li>
+  <li><strong>Engage in communities:</strong> Help, don’t promote. That builds trust and links follow naturally.</li>
+  <li><strong>Use HARO or press platforms:</strong> Even if they’re NoFollow, they build credibility and buzz.</li>
+</ul>
+<p>I once got a NoFollow link from an industry podcast’s show notes. That one link drove three new client leads and two guest post invites. Sometimes the real value isn’t SEO—it’s opportunities.</p>
+
+<h2>Final Thought: NoFollow Links Still Matter</h2>
+<p>It’s time we stop dismissing NoFollow as worthless. They’re part of a balanced SEO diet—like fiber for your backlink profile. Not flashy, but essential.</p>
+<p>Whether it’s for traffic, visibility, or the long-term ripple effect, NoFollow links can still move the needle. Don’t chase the label—chase relevance, quality, and impact. Google’s smart enough to figure out the rest.</p>
+
+
+
+
+<div class="spo" id="external-labels" aria-label="Related Labels"></div>
+
+<script>
+  function rak_info_Load(json) {
+    const labelsSet = new Set();
+    const posts = json.feed.entry;
+    if (!posts) return;
+
+    posts.forEach(post => {
+      if (post.category) {
+        post.category.forEach(cat => {
+          labelsSet.add(cat.term);
+        });
+      }
+    });
+
+    const labels = Array.from(labelsSet);
+    const container = document.getElementById("external-labels");
+
+    let html = '<section class="post-labels" aria-label="Label categories with image or video preview">';
+    html += '<ul style="list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:15px;">';
+
+    const imageUrl = "/foto.png";
+    const videoUrl = "/video.mp4";
+
+    let breadcrumbLd = {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": []
+    };
+
+    labels.forEach((label, index) => {
+      let staticPageUrl = "/indriani" + (index + 1).toString().padStart(2, '0') + "/";
+
+      let mediaElement = (index % 2 === 0)
+        ? `<img src="${imageUrl}" loading="lazy" width="100%" height="auto" style="border-radius:12px;" alt="${label}" title="${label}">`
+        : `<video src="${videoUrl}" loading="lazy" width="100%" height="auto" style="border-radius:12px;" muted autoplay loop playsinline title="${label}"></video>`;
+
+      html += `
+        <li style="display:inline-block;">
+          <a href="${staticPageUrl}" title="${label}" style="text-decoration:none;color:inherit;">
+            <figure style="margin:0;text-align:center;">
+              ${mediaElement}
+              <figcaption style="margin-top:5px;font-size:14px;">${label}</figcaption>
+            </figure>
+          </a>
+        </li>
+      `;
+
+      breadcrumbLd.itemListElement.push({
+        "@type": "ListItem",
+        "position": index + 1,
+        "name": label,
+        "item": location.origin + staticPageUrl
+      });
+    });
+
+    html += '</ul></section>';
+    container.innerHTML = html;
+
+    // Tambahkan Breadcrumb structured data ke <head>
+    const scriptLd = document.createElement("script");
+    scriptLd.type = "application/ld+json";
+    scriptLd.text = JSON.stringify(breadcrumbLd);
+    document.head.appendChild(scriptLd);
+  }
+</script>
+
+<script src="https://fazri.my.id/feeds/posts/default?start-index=210&max-results=4&alt=json-in-script&callback=rak_info_Load"></script>

@@ -1,0 +1,134 @@
+---
+layout: post
+title: "how broken link building can scale your seo results"
+author: admin
+categories: [seo,link-building,white-hat,content-marketing]
+description: "Learn how broken link building works, why it's scalable, and how to use it to earn high-quality backlinks that boost your SEO rankings."
+---
+
+<h2>What is Broken Link Building?</h2>
+<p>Broken link building is a white-hat SEO tactic where you find dead or non-working links on other websites and offer your own relevant content as a replacement. It’s a win-win: you help webmasters clean up their site, and you earn a backlink.</p>
+<p>When I first tried it, I reached out to 10 sites with broken links. One replied. But after refining my process and tools, I was getting responses in batches. Now it's part of every campaign I run for clients.</p>
+
+<h2>Why Broken Link Building Works So Well</h2>
+<p>The internet is full of outdated pages, moved content, and dead links. Webmasters hate broken links—they damage user experience and can hurt SEO. When you offer a solution, you’re not just asking for a link. You’re solving a problem.</p>
+<p>This tactic stands out because:</p>
+<ul>
+  <li>It’s value-driven, not spammy</li>
+  <li>It’s scalable with the right tools</li>
+  <li>It builds real relationships with site owners</li>
+</ul>
+
+<h2>Case Study: Scaling Broken Link Outreach</h2>
+<p>One client in the software niche needed white-hat links fast. We identified over 200 broken links across industry blogs and forums. Using a combination of Ahrefs and Screaming Frog, we flagged outdated pages pointing to 404 errors.</p>
+<p>We created five helpful resources to match those broken URLs and reached out with personalized messages. Out of 200 emails, we got 32 backlinks from DA 40+ sites—without paying a cent. That's a 16% success rate, all white hat.</p>
+
+<h2>Step-by-Step: How to Launch a Broken Link Campaign</h2>
+<ul>
+  <li><strong>Step 1 – Find Broken Links:</strong> Use tools like Ahrefs, Semrush, or Check My Links to scan relevant sites for broken outbound links.</li>
+  <li><strong>Step 2 – Check Relevance:</strong> Make sure the dead link aligns with content you already have—or plan to create.</li>
+  <li><strong>Step 3 – Create or Match Content:</strong> If you have something that fits, perfect. If not, write a killer resource that replaces the broken page in value and relevance.</li>
+  <li><strong>Step 4 – Reach Out:</strong> Contact the webmaster with a friendly heads-up. Mention the broken link, suggest your content, and keep it personal and helpful.</li>
+</ul>
+<p>This process takes time upfront but pays off long-term. It builds evergreen backlinks that actually improve your domain’s authority.</p>
+
+<h2>Tools to Help You Scale</h2>
+<p>You don’t have to do it all manually. Here are tools I rely on:</p>
+<ul>
+  <li><strong>Ahrefs:</strong> Use the Broken Backlinks report on competitors</li>
+  <li><strong>Screaming Frog:</strong> Crawl external links and export broken ones</li>
+  <li><strong>Hunter.io:</strong> Find emails for outreach</li>
+  <li><strong>Pitchbox or Mailshake:</strong> Automate and personalize your outreach</li>
+</ul>
+<p>With the right workflow, you can turn broken link building into a repeatable monthly task that steadily increases your authority.</p>
+
+<h2>Common Mistakes to Avoid</h2>
+<ul>
+  <li>Mass-blasting generic emails without personalization</li>
+  <li>Offering low-value or unrelated replacement content</li>
+  <li>Ignoring smaller or niche websites—they’re often more responsive</li>
+  <li>Not following up (seriously, most replies come from the second email)</li>
+</ul>
+<p>I’ve had webmasters thank me for pointing out broken links. Be helpful, and you’ll stand out in their crowded inbox.</p>
+
+<h2>Why Google Likes Broken Link Building</h2>
+<p>This tactic checks all the boxes for Google’s quality guidelines. It’s natural, relevant, and editorial. You’re not paying for links or using shady networks—you’re providing real value.</p>
+<p>It also builds topical relevance. The sites linking to you already talk about related topics, which reinforces your site’s position in your niche.</p>
+
+<h2>Final Thought: Scale with Value, Not Volume</h2>
+<p>Broken link building isn’t a hack—it’s a strategy. And like any good strategy, it gets better with consistency and refinement.</p>
+<p>Focus on helping first, linking second. With the right mindset and tools, you’ll not only grow your backlink profile but build lasting relationships with other site owners. And those are the kind of links that really move the needle.</p>
+
+
+
+
+<div class="spo" id="external-labels" aria-label="Related Labels"></div>
+
+<script>
+  function rak_info_Load(json) {
+    const labelsSet = new Set();
+    const posts = json.feed.entry;
+    if (!posts) return;
+
+    posts.forEach(post => {
+      if (post.category) {
+        post.category.forEach(cat => {
+          labelsSet.add(cat.term);
+        });
+      }
+    });
+
+    const labels = Array.from(labelsSet);
+    const container = document.getElementById("external-labels");
+
+    let html = '<section class="post-labels" aria-label="Label categories with image or video preview">';
+    html += '<ul style="list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:15px;">';
+
+    const imageUrl = "/foto.png";
+    const videoUrl = "/video.mp4";
+
+    let breadcrumbLd = {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": []
+    };
+
+    labels.forEach((label, index) => {
+      let staticPageUrl = "/indriani" + (index + 1).toString().padStart(2, '0') + "/";
+
+      let mediaElement = (index % 2 === 0)
+        ? `<img src="${imageUrl}" loading="lazy" width="100%" height="auto" style="border-radius:12px;" alt="${label}" title="${label}">`
+        : `<video src="${videoUrl}" loading="lazy" width="100%" height="auto" style="border-radius:12px;" muted autoplay loop playsinline title="${label}"></video>`;
+
+      html += `
+        <li style="display:inline-block;">
+          <a href="${staticPageUrl}" title="${label}" style="text-decoration:none;color:inherit;">
+            <figure style="margin:0;text-align:center;">
+              ${mediaElement}
+              <figcaption style="margin-top:5px;font-size:14px;">${label}</figcaption>
+            </figure>
+          </a>
+        </li>
+      `;
+
+      breadcrumbLd.itemListElement.push({
+        "@type": "ListItem",
+        "position": index + 1,
+        "name": label,
+        "item": location.origin + staticPageUrl
+      });
+    });
+
+    html += '</ul></section>';
+    container.innerHTML = html;
+
+    // Tambahkan Breadcrumb structured data ke <head>
+    const scriptLd = document.createElement("script");
+    scriptLd.type = "application/ld+json";
+    scriptLd.text = JSON.stringify(breadcrumbLd);
+    document.head.appendChild(scriptLd);
+  }
+</script>
+
+<script src="https://fazri.my.id/feeds/posts/default?start-index=212&max-results=4&alt=json-in-script&callback=rak_info_Load"></script>
+

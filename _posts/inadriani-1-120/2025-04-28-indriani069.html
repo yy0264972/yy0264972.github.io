@@ -1,0 +1,138 @@
+---
+layout: post
+title: "do follow vs no follow which links matter most for seo"
+author: admin
+categories: [seo,link-building,ranking-factors,backlink-types]
+description: "Not all links pass SEO value equally. Find out how do follow and no follow backlinks impact your rankings."
+---
+
+<h2>Understanding the Basics of Link Attributes</h2>
+<p>When I first started building backlinks, someone told me, “Only chase do follow links. No follow links are useless.” I believed them. Big mistake. I missed out on some golden opportunities because I didn’t really understand how link attributes work.</p>
+<p>Let's break it down. Every backlink either passes authority (link juice) or it doesn’t. That’s determined by whether it's a do follow or a no follow link.</p>
+
+<h2>What Are Do Follow Links?</h2>
+<p>Do follow links are the standard type of backlink. When a website links to your site with a do follow attribute, it passes SEO value—or link juice—to your site. It’s like getting a thumbs-up from one website to another in Google’s eyes.</p>
+<p>These links are powerful because they help improve your page authority, domain rating, and, ultimately, your keyword rankings. Most natural editorial links from blogs, news sites, or partners are do follow unless marked otherwise.</p>
+
+<h2>What Are No Follow Links?</h2>
+<p>No follow links contain a small HTML tag that tells search engines, "Hey, don't pass any SEO value through this link." It was originally created to combat blog comment spam but has since expanded to other areas like sponsored posts and user-generated content.</p>
+<p>Typical no follow sources include:</p>
+<ul>
+  <li>Blog comments</li>
+  <li>Forum posts</li>
+  <li>Press releases</li>
+  <li>Social media links</li>
+</ul>
+<p>But here’s the kicker: even though no follow links don’t pass direct authority, they’re far from useless.</p>
+
+<h2>Why No Follow Links Still Matter</h2>
+<p>Early in my SEO journey, I landed a no follow link from a popular industry blog. I almost ignored it because it "wasn't do follow." But that no follow link brought a flood of referral traffic, helped build brand awareness, and led to real do follow links from people who discovered me through it.</p>
+<p>No follow links can still:</p>
+<ul>
+  <li>Drive targeted traffic</li>
+  <li>Build brand visibility</li>
+  <li>Lead to future link opportunities</li>
+  <li>Diversify your backlink profile (which Google loves)</li>
+</ul>
+
+<h2>Case Study: The Power of a No Follow Link</h2>
+<p>One of my clients got featured in a major online newspaper. The backlink was no follow, but the exposure led to over 15,000 new visitors and 120 new backlinks from smaller blogs and industry sites (which were mostly do follow).</p>
+<p>The no follow link acted like a catalyst. Without it, those secondary links would never have happened.</p>
+
+<h2>Should You Prioritize Do Follow Over No Follow?</h2>
+<p>If you’re chasing pure SEO value, yes—do follow links are more valuable. But obsessing only over do follow can make your backlink profile look unnatural. A healthy site has a mix of both.</p>
+<p>Google expects a normal, organic backlink profile to include some no follow links. If all your backlinks are do follow, it might look suspicious and artificial.</p>
+
+<h2>How to Earn High-Quality Do Follow Links</h2>
+<ul>
+  <li>Create amazing, original content that people naturally want to link to</li>
+  <li>Offer unique data, studies, or industry reports</li>
+  <li>Do thoughtful guest posting on relevant, reputable sites</li>
+  <li>Build relationships with bloggers and journalists</li>
+</ul>
+<p>In short, give people a real reason to reference your work. Don't chase links—earn them.</p>
+
+<h2>How to Leverage No Follow Links for Maximum Benefit</h2>
+<ul>
+  <li>Use them for exposure and traffic, not just SEO</li>
+  <li>Target high-authority websites even if the link is no follow</li>
+  <li>Be active on forums, communities, and social networks</li>
+  <li>Focus on brand mentions and visibility opportunities</li>
+</ul>
+<p>Remember, traffic leads to engagement, brand searches, and eventually—more natural backlinks. It all connects.</p>
+
+<h2>Final Thought: A Balanced Link Profile Wins</h2>
+<p>When building your SEO strategy, think bigger than just link juice. Every backlink—do follow or no follow—should have a purpose. Sometimes that purpose is rankings. Sometimes it’s visibility. Sometimes it’s relationships.</p>
+<p>Build both smartly, and your SEO success will be much more stable and long-lasting. After all, in the wild world of Google, balance isn’t just nice—it’s survival.</p>
+
+
+
+<div class="spo" id="external-labels" aria-label="Related Labels"></div>
+
+<script>
+  function rak_info_Load(json) {
+    const labelsSet = new Set();
+    const posts = json.feed.entry;
+    if (!posts) return;
+
+    posts.forEach(post => {
+      if (post.category) {
+        post.category.forEach(cat => {
+          labelsSet.add(cat.term);
+        });
+      }
+    });
+
+    const labels = Array.from(labelsSet);
+    const container = document.getElementById("external-labels");
+
+    let html = '<section class="post-labels" aria-label="Label categories with image or video preview">';
+    html += '<ul style="list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:15px;">';
+
+    const imageUrl = "/foto.png";
+    const videoUrl = "/video.mp4";
+
+    let breadcrumbLd = {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": []
+    };
+
+    labels.forEach((label, index) => {
+      let staticPageUrl = "/indriani" + (index + 1).toString().padStart(2, '0') + "/";
+
+      let mediaElement = (index % 2 === 0)
+        ? `<img src="${imageUrl}" loading="lazy" width="100%" height="auto" style="border-radius:12px;" alt="${label}" title="${label}">`
+        : `<video src="${videoUrl}" loading="lazy" width="100%" height="auto" style="border-radius:12px;" muted autoplay loop playsinline title="${label}"></video>`;
+
+      html += `
+        <li style="display:inline-block;">
+          <a href="${staticPageUrl}" title="${label}" style="text-decoration:none;color:inherit;">
+            <figure style="margin:0;text-align:center;">
+              ${mediaElement}
+              <figcaption style="margin-top:5px;font-size:14px;">${label}</figcaption>
+            </figure>
+          </a>
+        </li>
+      `;
+
+      breadcrumbLd.itemListElement.push({
+        "@type": "ListItem",
+        "position": index + 1,
+        "name": label,
+        "item": location.origin + staticPageUrl
+      });
+    });
+
+    html += '</ul></section>';
+    container.innerHTML = html;
+
+    // Tambahkan Breadcrumb structured data ke <head>
+    const scriptLd = document.createElement("script");
+    scriptLd.type = "application/ld+json";
+    scriptLd.text = JSON.stringify(breadcrumbLd);
+    document.head.appendChild(scriptLd);
+  }
+</script>
+
+<script src="https://fazri.my.id/feeds/posts/default?start-index=222&max-results=4&alt=json-in-script&callback=rak_info_Load"></script>
