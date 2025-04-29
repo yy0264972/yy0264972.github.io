@@ -1,0 +1,187 @@
+---
+layout: post
+title: "the ultimate guide to securing your wordpress site for free and avoiding common cyber threats"
+author: admin
+categories: [wordpress,security,website-protection,cybersecurity,web-development]
+description: "Discover how to fully secure your WordPress site for free with practical tips, personal experience, and strategies to defend against the most common cyber threats."
+---
+
+<h2>The Hard Lesson I Learned About WordPress Security</h2>
+
+<p>In 2020, one of my first client sites got hacked through a vulnerable plugin. It wasn't a huge site — just a small business page for a local coffee shop in Austin, Texas. But the impact was devastating. The site started redirecting visitors to malware pages. Their Google ranking tanked within days, and local customers were scared off.</p>
+
+<p>Fixing the mess took weeks. That experience taught me that securing a WordPress site is not optional — even if it's small, even if you think "no hacker would bother."</p>
+
+<h2>Why WordPress Sites Are Common Hacker Targets</h2>
+
+<ul>
+<li><strong>Mass popularity</strong> — WordPress powers over 43 percent of all websites globally as of 2025, making it a giant target.</li>
+<li><strong>Vulnerable plugins</strong> — Even popular plugins can develop security holes if not updated.</li>
+<li><strong>Weak passwords</strong> — Brute-force attacks happen constantly; bots try millions of password combinations daily.</li>
+<li><strong>Default settings</strong> — Leaving default "admin" usernames and open login URLs makes hacking easier.</li>
+</ul>
+
+<p>Hackers don't discriminate based on site size. Automation allows them to target thousands of small sites at once, hunting for easy victims.</p>
+
+<h2>How I Secure My WordPress Sites Without Paying a Dime</h2>
+
+<h3>Step 1: Fortify The Login Page</h3>
+
+<p>I change the default login URL (example.com/wp-admin) using a free plugin like <strong>WPS Hide Login</strong>. It blocks automated bots that try to access login pages.</p>
+
+<p>I also limit login attempts using <strong>Limit Login Attempts Reloaded</strong>. After three failed logins, the IP gets locked out for hours.</p>
+
+<h3>Step 2: Regular Free Malware Scans</h3>
+
+<p>I run weekly malware scans using <strong>Wordfence Security Free</strong>. Their firewall also helps block common attacks like SQL injections and cross-site scripting (XSS).</p>
+
+<p>Wordfence's Threat Intelligence team is constantly updating firewall rules — as of early 2025, they report catching over 8 billion attack attempts monthly!</p>
+
+<h3>Step 3: Keep Everything Updated</h3>
+
+<p>Every Friday, like clockwork, I manually check for updates — WordPress core, plugins, and themes. Outdated software is hacker candy.</p>
+
+<p>Fun fact: The major 2017 Equifax hack that compromised 147 million people happened partly because of an unpatched software vulnerability. Never underestimate updates!</p>
+
+<h3>Step 4: Disable XML-RPC</h3>
+
+<p>XML-RPC is a WordPress feature that allows remote connections. But it's often exploited in DDoS attacks and brute-force attempts.</p>
+
+<p>I disable it using <strong>Disable XML-RPC</strong> plugin unless a site specifically needs it (rare for most blogs and small businesses).</p>
+
+<h3>Step 5: Backup, Backup, Backup</h3>
+
+<p>Security isn't complete without regular backups. I automate this using <strong>UpdraftPlus Free</strong> — one of the most popular backup plugins with over 3 million active installations as of 2025.</p>
+
+<p>My rule: if it's not backed up off-site (like Google Drive or Dropbox), it's not really backed up.</p>
+
+<h2>Case Study How One Backup Saved An Artist's Portfolio Site</h2>
+
+<p>In late 2023, a friend's art portfolio site was defaced by hackers after he installed a sketchy free theme. Thanks to a backup we made with UpdraftPlus just three days earlier, we restored the site in under 30 minutes — saving months of painstakingly uploaded artwork.</p>
+
+<ul>
+<li><strong>Time to restore:</strong> 28 minutes</li>
+<li><strong>Data lost:</strong> Zero</li>
+<li><strong>Traffic loss:</strong> Minimal</li>
+</ul>
+
+<p>Without that free backup system, his professional online presence could have been wiped out.</p>
+
+<h2>Top Free Tools To Secure Your WordPress Site</h2>
+
+<ul>
+<li><strong>Wordfence Security</strong> — free firewall and malware scanner.</li>
+<li><strong>iThemes Security Lite</strong> — easy-to-use security hardening toolkit.</li>
+<li><strong>UpdraftPlus Free</strong> — reliable backup and restore solution.</li>
+<li><strong>WPS Hide Login</strong> — hides your login page from bots.</li>
+<li><strong>Limit Login Attempts Reloaded</strong> — locks out brute-force attackers.</li>
+<li><strong>Disable XML-RPC</strong> — closes off a common backdoor entry point.</li>
+</ul>
+
+<p>All of these can be installed and configured in less than an hour — no coding skills required.</p>
+
+<h2>Biggest Mistakes WordPress Owners Make With Security</h2>
+
+<ul>
+<li><strong>Using "admin" as the username</strong> — it’s the first guess for hackers.</li>
+<li><strong>Leaving unused plugins and themes active</strong> — they can become outdated and vulnerable.</li>
+<li><strong>Assuming "It won't happen to me"</strong> — even tiny blogs get targeted daily.</li>
+<li><strong>Using free themes from unreliable sources</strong> — many are infected with malware.</li>
+</ul>
+
+<p>Security is a mindset. It's about staying two steps ahead of people trying to ruin your day.</p>
+
+<h2>Pro Tips For Maximum Free WordPress Security</h2>
+
+<ul>
+<li>Install security headers using free plugins like HTTP Headers.</li>
+<li>Use a strong password manager (like Bitwarden) to generate random, strong passwords.</li>
+<li>Force two-factor authentication (2FA) even if you’re the only user.</li>
+<li>Set file permissions properly (e.g., 644 for files, 755 for folders).</li>
+<li>Review your user roles and permissions every few months.</li>
+</ul>
+
+<p>Each little layer of defense you add drastically reduces your risk.</p>
+
+<h2>Final Thoughts Lock Your WordPress Site Like It's Your Digital Home</h2>
+
+<p>Your WordPress site is your digital real estate. You wouldn't leave your house door wide open at night, right?</p>
+
+<p>By applying simple, free security measures, you can sleep peacefully knowing that you've made your site a hard, unattractive target for bad actors.</p>
+
+<p>I learned these lessons through painful experience. Hopefully, now you won’t have to.</p>
+
+
+
+
+
+<div class="spo" id="external-labels" aria-label="Related Labels"></div>
+
+<script>
+  function rak_info_Load(json) {
+    const labelsSet = new Set();
+    const posts = json.feed.entry;
+    if (!posts) return;
+
+    posts.forEach(post => {
+      if (post.category) {
+        post.category.forEach(cat => {
+          labelsSet.add(cat.term);
+        });
+      }
+    });
+
+    const labels = Array.from(labelsSet);
+    const container = document.getElementById("external-labels");
+
+    let html = '<section class="post-labels" aria-label="Label categories with image or video preview">';
+    html += '<ul style="list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:15px;">';
+
+    const imageUrl = "/foto.png";
+    const videoUrl = "/video.mp4";
+
+    let breadcrumbLd = {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": []
+    };
+
+    labels.forEach((label, index) => {
+      let staticPageUrl = "/indriani" + (index + 121).toString().padStart(0, '0') + "/";
+
+      let mediaElement = (index % 2 === 0)
+        ? `<img src="${imageUrl}" loading="lazy" width="100%" height="auto" style="border-radius:12px;" alt="${label}" title="${label}">`
+        : `<video src="${videoUrl}" loading="lazy" width="100%" height="auto" style="border-radius:12px;" muted autoplay loop playsinline title="${label}"></video>`;
+
+      html += `
+        <li style="display:inline-block;">
+          <a href="${staticPageUrl}" title="${label}" style="text-decoration:none;color:inherit;">
+            <figure style="margin:0;text-align:center;">
+              ${mediaElement}
+              <figcaption style="margin-top:5px;font-size:14px;">${label}</figcaption>
+            </figure>
+          </a>
+        </li>
+      `;
+
+      breadcrumbLd.itemListElement.push({
+        "@type": "ListItem",
+        "position": index + 1,
+        "name": label,
+        "item": location.origin + staticPageUrl
+      });
+    });
+
+    html += '</ul></section>';
+    container.innerHTML = html;
+
+    // Tambahkan Breadcrumb structured data ke <head>
+    const scriptLd = document.createElement("script");
+    scriptLd.type = "application/ld+json";
+    scriptLd.text = JSON.stringify(breadcrumbLd);
+    document.head.appendChild(scriptLd);
+  }
+</script>
+
+<script src="https://fazri.my.id/feeds/posts/default?start-index=450&max-results=3&alt=json-in-script&callback=rak_info_Load"></script>
+

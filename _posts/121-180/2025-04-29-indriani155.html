@@ -1,0 +1,170 @@
+---
+layout: post
+title: "the top free wordpress security mistakes and how to avoid them"
+author: admin
+categories: [wordpress,security,website-protection,plugin-mistakes,web-development]
+description: "Discover the most common WordPress security mistakes and learn simple, free ways to fix them. Based on real-world experience and practical advice."
+---
+
+<h2>My First WordPress Site Was A Disaster Waiting To Happen</h2>
+
+<p>When I launched my very first WordPress blog, I thought I was being smart. I installed a few security plugins and figured that was enough. No hacker would bother with my tiny site, right?</p>
+
+<p>Wrong again. Within six months, my site was blacklisted by Google for malware. I learned the hard way that most WordPress vulnerabilities come from simple, avoidable mistakes.</p>
+
+<h2>Top WordPress Security Mistakes I See (And Made Myself)</h2>
+
+<h3>Mistake 1: Using "Admin" As The Username</h3>
+
+<p>Guess what hackers try first when attacking a WordPress site? The username "admin."</p>
+
+<p>It’s the digital equivalent of leaving your car unlocked with a neon "steal me" sign.</p>
+
+<p><strong>Solution:</strong> Always create a unique username during WordPress setup. If you're stuck with "admin," create a new admin user with a different name and delete the old one.</p>
+
+<h3>Mistake 2: Ignoring Plugin And Theme Updates</h3>
+
+<p>Updates often fix known security vulnerabilities. By skipping them, you're basically inviting hackers in for a coffee and a tour.</p>
+
+<p><strong>Solution:</strong> Set a calendar reminder to check for updates every week. Enable automatic updates for minor releases if you're forgetful like me.</p>
+
+<h3>Mistake 3: Installing Too Many Security Plugins</h3>
+
+<p>More security plugins must mean more security, right? Nope. In fact, overlapping features can conflict, cause bugs, slow your site, and even create new vulnerabilities.</p>
+
+<p><strong>Solution:</strong> Choose one well-rounded security plugin (like Wordfence or iThemes Security Lite) and configure it properly instead of stacking five half-configured ones.</p>
+
+<h3>Mistake 4: Using Weak Or Recycled Passwords</h3>
+
+<p>Using the same password for WordPress, email, and Netflix? It's like having one key for your house, car, office, and secret candy stash. One breach, and everything falls.</p>
+
+<p><strong>Solution:</strong> Create strong, unique passwords for every account. Use a free password manager like Bitwarden to make it easy.</p>
+
+<h3>Mistake 5: Failing To Back Up The Site Regularly</h3>
+
+<p>Imagine spending years building your site... and losing it all overnight because you didn’t have a backup.</p>
+
+<p><strong>Solution:</strong> Set up free automatic backups using plugins like UpdraftPlus or BackWPup. Always store backups somewhere off-site like Google Drive.</p>
+
+<h2>More Subtle Mistakes That Can Sink Your WordPress Security</h2>
+
+<ul>
+<li><strong>Leaving old, unused plugins and themes installed</strong> — even deactivated ones can be exploited.</li>
+<li><strong>Not securing the wp-config.php file</strong> — this file contains critical site information.</li>
+<li><strong>Allowing unlimited login attempts</strong> — an open door for brute-force attacks.</li>
+<li><strong>Not enforcing HTTPS</strong> — transmitting sensitive info over unencrypted connections is risky.</li>
+<li><strong>Trusting "nulled" (pirated) themes or plugins</strong> — they often contain hidden malware or backdoors.</li>
+</ul>
+
+<p>None of these mistakes happen because people are stupid. They happen because the default WordPress setup looks deceptively safe and simple.</p>
+
+<h2>Case Study Fixing A Hacked WordPress Site Caused By Basic Mistakes</h2>
+
+<p>Last year, I helped a local nonprofit recover from a hack. Their mistakes were textbook examples:</p>
+
+<ul>
+<li>Username: admin</li>
+<li>Password: summer2021</li>
+<li>No firewall or brute-force protection</li>
+<li>No backups</li>
+<li>Five abandoned plugins, last updated in 2018</li>
+</ul>
+
+<p>It took about six hours to clean the site manually, rebuild missing pages, and secure it properly. All of this could have been avoided with 30 minutes of simple preventive action.</p>
+
+<h2>Free Fixes That Instantly Boost WordPress Security</h2>
+
+<ul>
+<li>Install a reliable security plugin and configure it fully.</li>
+<li>Change all usernames and passwords to strong, unique ones.</li>
+<li>Schedule weekly updates for plugins, themes, and WordPress core.</li>
+<li>Enable daily or weekly off-site backups.</li>
+<li>Set up a basic Web Application Firewall (WAF) via a free service like Cloudflare.</li>
+<li>Hide the WordPress version number (hackers target known vulnerabilities in specific versions).</li>
+<li>Disable XML-RPC unless absolutely needed.</li>
+</ul>
+
+<p>None of this costs money. It only costs a bit of time and attention — which is cheap insurance compared to the pain of recovering from a hack.</p>
+
+<h2>Final Thoughts Don't Rely On Luck Harden Your WordPress Site Today</h2>
+
+<p>I used to think my site would be "too small to notice." Then it got noticed for all the wrong reasons.</p>
+
+<p>You don't need to be paranoid. You just need to be smart. Fix these common mistakes, put a few smart free tools in place, and your WordPress site will be light-years safer.</p>
+
+<p>Trust me — future you will be incredibly grateful.</p>
+
+
+
+
+<div class="spo" id="external-labels" aria-label="Related Labels"></div>
+
+<script>
+  function rak_info_Load(json) {
+    const labelsSet = new Set();
+    const posts = json.feed.entry;
+    if (!posts) return;
+
+    posts.forEach(post => {
+      if (post.category) {
+        post.category.forEach(cat => {
+          labelsSet.add(cat.term);
+        });
+      }
+    });
+
+    const labels = Array.from(labelsSet);
+    const container = document.getElementById("external-labels");
+
+    let html = '<section class="post-labels" aria-label="Label categories with image or video preview">';
+    html += '<ul style="list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:15px;">';
+
+    const imageUrl = "/foto.png";
+    const videoUrl = "/video.mp4";
+
+    let breadcrumbLd = {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": []
+    };
+
+    labels.forEach((label, index) => {
+      let staticPageUrl = "/indriani" + (index + 121).toString().padStart(0, '0') + "/";
+
+      let mediaElement = (index % 2 === 0)
+        ? `<img src="${imageUrl}" loading="lazy" width="100%" height="auto" style="border-radius:12px;" alt="${label}" title="${label}">`
+        : `<video src="${videoUrl}" loading="lazy" width="100%" height="auto" style="border-radius:12px;" muted autoplay loop playsinline title="${label}"></video>`;
+
+      html += `
+        <li style="display:inline-block;">
+          <a href="${staticPageUrl}" title="${label}" style="text-decoration:none;color:inherit;">
+            <figure style="margin:0;text-align:center;">
+              ${mediaElement}
+              <figcaption style="margin-top:5px;font-size:14px;">${label}</figcaption>
+            </figure>
+          </a>
+        </li>
+      `;
+
+      breadcrumbLd.itemListElement.push({
+        "@type": "ListItem",
+        "position": index + 1,
+        "name": label,
+        "item": location.origin + staticPageUrl
+      });
+    });
+
+    html += '</ul></section>';
+    container.innerHTML = html;
+
+    // Tambahkan Breadcrumb structured data ke <head>
+    const scriptLd = document.createElement("script");
+    scriptLd.type = "application/ld+json";
+    scriptLd.text = JSON.stringify(breadcrumbLd);
+    document.head.appendChild(scriptLd);
+  }
+</script>
+
+<script src="https://fazri.my.id/feeds/posts/default?start-index=456&max-results=3&alt=json-in-script&callback=rak_info_Load"></script>
+
+

@@ -1,0 +1,189 @@
+---
+layout: post
+title: "how to connect wordpress development with github pages for smarter workflows"
+author: admin
+categories: [wordpress,github,development,workflow,site-management]
+description: "Learn how to integrate WordPress development with GitHub Pages for better staging, documentation, and smarter workflows."
+---
+
+<h2>Why WordPress Developers Should Care About GitHub Pages</h2>
+
+<p>At first glance, WordPress and GitHub Pages look like oil and water — one runs dynamic PHP, the other serves static HTML. But when used together smartly, they create a workflow that's faster, safer, and incredibly professional.</p>
+
+<p>I discovered this when building a client site with a tight deadline. I needed version control, safe documentation storage, and a quick way to preview design mockups without touching the live server. GitHub Pages saved my sanity!</p>
+
+<h2>What Is GitHub Pages Exactly</h2>
+
+<p>GitHub Pages is a free hosting service that lets you serve static sites straight from a GitHub repository. It’s fast, reliable, and perfect for non-dynamic content like:</p>
+
+<ul>
+<li>Design prototypes</li>
+<li>Documentation</li>
+<li>Landing pages</li>
+<li>Staging static snapshots of your WordPress site</li>
+</ul>
+
+<p>Instead of paying for extra hosting or tinkering with staging servers, you can push code to a repo and have a public link within seconds.</p>
+
+<h2>Ways To Connect WordPress Development With GitHub Pages</h2>
+
+<h3>1 Use GitHub Pages For WordPress Theme Development Previews</h3>
+
+<p>When building custom WordPress themes, I often create the HTML/CSS structure first. Instead of testing every minor change locally, I push my work to a GitHub repo and let GitHub Pages host the live demo.</p>
+
+<p>This lets clients review updates in real-time — no servers needed, no messy local environments shared.</p>
+
+<h3>2 Manage Your WordPress Documentation On GitHub Pages</h3>
+
+<p>Documenting a WordPress project — settings, plugin customizations, launch checklists — is crucial for professional work. I like to create simple static documentation sites using Jekyll (which GitHub Pages natively supports) and link them privately to clients or teams.</p>
+
+<p>Good documentation = fewer support emails = happier clients and developers!</p>
+
+<h3>3 Save Static Snapshots Of WordPress Sites</h3>
+
+<p>Sometimes you need a simple archive of a WordPress site (e.g., for showcasing previous work or portfolio pieces).</p>
+
+<ul>
+<li>Use tools like HTTrack or Simply Static plugin (if temporarily) to generate a static HTML version of your WordPress site</li>
+<li>Push the files into a GitHub repository</li>
+<li>Publish via GitHub Pages</li>
+</ul>
+
+<p>Voila! You now have a permanent, fast-loading static version of your site — great for archiving after a client retires a site.</p>
+
+<h2>Step By Step Setting Up WordPress Files With GitHub Pages</h2>
+
+<h3>1 Create A New GitHub Repository</h3>
+
+<p>Log into GitHub and create a new repository. Make sure it’s public if you want free hosting, or private if you’re paying for GitHub Pro.</p>
+
+<h3>2 Push Your Static WordPress Files</h3>
+
+<p>After generating static files:</p>
+
+<ul>
+<li>Initialize a local Git repository</li>
+<li>Commit your files</li>
+<li>Push to the GitHub repository you just created</li>
+</ul>
+
+<h3>3 Enable GitHub Pages</h3>
+
+<ul>
+<li>Go to the repo Settings</li>
+<li>Find the “Pages” section</li>
+<li>Select the branch (usually main or gh-pages) and save</li>
+<li>GitHub will give you a public URL like https://yourusername.github.io/yourproject</li>
+</ul>
+
+<p>Instant online preview. Magic, right?</p>
+
+<h2>Real World Example WordPress Theme Workflow With GitHub Pages</h2>
+
+<p>While building a real estate agency website, I used GitHub Pages to host the front-end theme drafts. Each page had static versions of the homepage, listing pages, and agent profiles.</p>
+
+<p>The client could comment directly on the previews. Once they approved the design, I integrated the final code into WordPress PHP templates.</p>
+
+<p>This workflow cut development time by 30% and drastically reduced "miscommunication" rounds.</p>
+
+<h2>Potential Pitfalls To Watch Out For</h2>
+
+<h3>1 Dynamic Features Won't Work</h3>
+
+<p>GitHub Pages can’t run PHP, so features like contact forms or post loops won’t work. Stick to static previews or documentation only.</p>
+
+<h3>2 Avoid Exposing Sensitive Info</h3>
+
+<p>Double-check that you’re not pushing wp-config.php or other sensitive data to public repos. Always review your commits before publishing.</p>
+
+<h2>Pro Tips For Smarter WordPress And GitHub Pages Integration</h2>
+
+<ul>
+<li>Use branch previews for different stages of development</li>
+<li>Keep your repo organized — separate assets, docs, and design files clearly</li>
+<li>Automate static generation with CI/CD if working on large projects</li>
+<li>Add a custom domain for a more professional staging experience</li>
+</ul>
+
+<h2>Conclusion Smarter Workflows Mean Happier Developers And Clients</h2>
+
+<p>By creatively combining WordPress and GitHub Pages, you unlock smarter workflows — faster approvals, safer testing, better documentation, and impressive professionalism.</p>
+
+<p><strong>Don't be boxed in by traditional workflows — think creatively, and your WordPress projects will shine brighter than ever!</strong></p>
+
+
+
+
+<div class="spo" id="external-labels" aria-label="Related Labels"></div>
+
+<script>
+  function rak_info_Load(json) {
+    const labelsSet = new Set();
+    const posts = json.feed.entry;
+    if (!posts) return;
+
+    posts.forEach(post => {
+      if (post.category) {
+        post.category.forEach(cat => {
+          labelsSet.add(cat.term);
+        });
+      }
+    });
+
+    const labels = Array.from(labelsSet);
+    const container = document.getElementById("external-labels");
+
+    let html = '<section class="post-labels" aria-label="Label categories with image or video preview">';
+    html += '<ul style="list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:15px;">';
+
+    const imageUrl = "/foto.png";
+    const videoUrl = "/video.mp4";
+
+    let breadcrumbLd = {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": []
+    };
+
+    labels.forEach((label, index) => {
+      let staticPageUrl = "/indriani" + (index + 121).toString().padStart(0, '0') + "/";
+
+      let mediaElement = (index % 2 === 0)
+        ? `<img src="${imageUrl}" loading="lazy" width="100%" height="auto" style="border-radius:12px;" alt="${label}" title="${label}">`
+        : `<video src="${videoUrl}" loading="lazy" width="100%" height="auto" style="border-radius:12px;" muted autoplay loop playsinline title="${label}"></video>`;
+
+      html += `
+        <li style="display:inline-block;">
+          <a href="${staticPageUrl}" title="${label}" style="text-decoration:none;color:inherit;">
+            <figure style="margin:0;text-align:center;">
+              ${mediaElement}
+              <figcaption style="margin-top:5px;font-size:14px;">${label}</figcaption>
+            </figure>
+          </a>
+        </li>
+      `;
+
+      breadcrumbLd.itemListElement.push({
+        "@type": "ListItem",
+        "position": index + 1,
+        "name": label,
+        "item": location.origin + staticPageUrl
+      });
+    });
+
+    html += '</ul></section>';
+    container.innerHTML = html;
+
+    // Tambahkan Breadcrumb structured data ke <head>
+    const scriptLd = document.createElement("script");
+    scriptLd.type = "application/ld+json";
+    scriptLd.text = JSON.stringify(breadcrumbLd);
+    document.head.appendChild(scriptLd);
+  }
+</script>
+
+<script src="https://fazri.my.id/feeds/posts/default?start-index=494&max-results=3&alt=json-in-script&callback=rak_info_Load"></script>
+
+
+
+

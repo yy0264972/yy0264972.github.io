@@ -1,0 +1,183 @@
+---
+layout: post
+title: "multilingual static wordpress github setup"
+author: admin
+categories: [wordpress,github,multilingual,static-site,web-development]
+description: "Discover how to build a multilingual static WordPress site hosted on GitHub Pages for global reach and speed."
+---
+
+<h2>Why Multilingual Static Sites Are Challenging</h2>
+
+<p>Creating a multilingual static site introduces complexities like language switching, localized SEO, and content management at scale. In a normal WordPress environment, plugins like WPML or Polylang dynamically handle this. But in a static site world, you have to pre-generate every version.</p>
+
+<p>Luckily, with careful setup and planning, a multilingual static WordPress site hosted on GitHub Pages is not only possible — it's powerful.</p>
+
+<h2>Key Components Of Multilingual Static Setup</h2>
+
+<ul>
+<li><strong>WordPress Backend:</strong> Use plugins like Polylang or TranslatePress to manage multilingual content.</li>
+<li><strong>Static Export Strategy:</strong> Export separate directories for each language (e.g., <code>/en/</code>, <code>/fr/</code>, <code>/de/</code>).</li>
+<li><strong>GitHub Repository Structure:</strong> Organize language folders cleanly to allow proper routing.</li>
+<li><strong>Language Switcher:</strong> Static language switchers must point to correct static URLs, not dynamic queries.</li>
+</ul>
+
+<p>Getting these elements aligned ensures a smooth experience for users and search engines alike.</p>
+
+<h2>Organizing Static Multilingual Folders</h2>
+
+<p>When exporting your static WordPress site, configure the plugin to generate language-specific subfolders.</p>
+
+<ul>
+<li><code>/index.html</code> (default language, e.g., English)</li>
+<li><code>/fr/index.html</code> (French version)</li>
+<li><code>/de/index.html</code> (German version)</li>
+<li><code>/es/index.html</code> (Spanish version)</li>
+</ul>
+
+<p>This structure makes it easy for GitHub Pages to serve the right content based on URL paths.</p>
+
+<h2>Implementing Static Language Switchers</h2>
+
+<p>Dynamic language switchers won't work on static sites unless they rely purely on link navigation. You need static links like:</p>
+
+<ul>
+<li><code>&lt;a href="/fr/"&gt;Français&lt;/a&gt;</code></li>
+<li><code>&lt;a href="/de/"&gt;Deutsch&lt;/a&gt;</code></li>
+<li><code>&lt;a href="/es/"&gt;Español&lt;/a&gt;</code></li>
+</ul>
+
+<p>Dropdowns or fancy AJAX switchers must be avoided unless they directly change page URLs.</p>
+
+<h2>SEO Considerations For Multilingual Static Sites</h2>
+
+<ul>
+<li><strong>hreflang Tags:</strong> Add proper <code>&lt;link rel="alternate" hreflang="xx" href="..."&gt;</code> tags in the <code>&lt;head&gt;</code> section of each page.</li>
+<li><strong>Canonical URLs:</strong> Ensure each language version has a self-referencing canonical tag.</li>
+<li><strong>Separate Metadata:</strong> Titles, descriptions, and meta tags should be translated properly for each page.</li>
+</ul>
+
+<p>This ensures Google indexes each version separately but understands they are related alternatives.</p>
+
+<h2>Automating Multilingual Deployment</h2>
+
+<p>Use GitHub Actions to automate building and deploying all language folders simultaneously. Example basic workflow:</p>
+
+<pre><code>
+name: Deploy Multilingual Static Site
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./static-site-folder
+          publish_branch: gh-pages
+</code></pre>
+
+<p>Inside the <code>static-site-folder</code>, ensure that each language has its correct subfolder ready for deployment.</p>
+
+<h2>Case Study Managing A Multilingual Static WordPress Site</h2>
+
+<p>In a past project targeting English, German, and Japanese audiences, we used this setup. Each language was maintained as a separate WordPress "view" via Polylang, then exported into structured static folders.</p>
+
+<p>GitHub Actions handled pushing all versions to GitHub Pages automatically after edits. The result: a fast, SEO-optimized multilingual static site capable of serving global visitors at lightning speed — and no expensive servers involved.</p>
+
+<h2>Benefits Of Multilingual Static WordPress On GitHub</h2>
+
+<ul>
+<li><strong>Global Reach:</strong> Serve users worldwide in their native languages with lightning-fast static delivery.</li>
+<li><strong>Enhanced SEO:</strong> Improve rankings in multiple local search engines with proper language targeting.</li>
+<li><strong>Cost Savings:</strong> No need for heavy cloud infrastructure for multi-language delivery.</li>
+<li><strong>Simplified Management:</strong> Git versioning keeps track of all changes across languages cleanly.</li>
+</ul>
+
+<h2>Conclusion Unlock The Power Of Global Static Sites</h2>
+
+<p>Combining multilingual WordPress with static site generation and GitHub Pages hosting brings the best of both worlds: powerful CMS flexibility during creation and unbeatable speed during delivery.</p>
+
+<p>With careful planning and a smart structure, your static multilingual WordPress project can truly conquer the globe without breaking the bank — or your nerves.</p>
+
+
+
+
+
+<div class="spo" id="external-labels" aria-label="Related Labels"></div>
+
+<script>
+  function rak_info_Load(json) {
+    const labelsSet = new Set();
+    const posts = json.feed.entry;
+    if (!posts) return;
+
+    posts.forEach(post => {
+      if (post.category) {
+        post.category.forEach(cat => {
+          labelsSet.add(cat.term);
+        });
+      }
+    });
+
+    const labels = Array.from(labelsSet);
+    const container = document.getElementById("external-labels");
+
+    let html = '<section class="post-labels" aria-label="Label categories with image or video preview">';
+    html += '<ul style="list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:15px;">';
+
+    const imageUrl = "/foto.png";
+    const videoUrl = "/video.mp4";
+
+    let breadcrumbLd = {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": []
+    };
+
+    labels.forEach((label, index) => {
+      let staticPageUrl = "/indriani" + (index + 121).toString().padStart(0, '0') + "/";
+
+      let mediaElement = (index % 2 === 0)
+        ? `<img src="${imageUrl}" loading="lazy" width="100%" height="auto" style="border-radius:12px;" alt="${label}" title="${label}">`
+        : `<video src="${videoUrl}" loading="lazy" width="100%" height="auto" style="border-radius:12px;" muted autoplay loop playsinline title="${label}"></video>`;
+
+      html += `
+        <li style="display:inline-block;">
+          <a href="${staticPageUrl}" title="${label}" style="text-decoration:none;color:inherit;">
+            <figure style="margin:0;text-align:center;">
+              ${mediaElement}
+              <figcaption style="margin-top:5px;font-size:14px;">${label}</figcaption>
+            </figure>
+          </a>
+        </li>
+      `;
+
+      breadcrumbLd.itemListElement.push({
+        "@type": "ListItem",
+        "position": index + 1,
+        "name": label,
+        "item": location.origin + staticPageUrl
+      });
+    });
+
+    html += '</ul></section>';
+    container.innerHTML = html;
+
+    // Tambahkan Breadcrumb structured data ke <head>
+    const scriptLd = document.createElement("script");
+    scriptLd.type = "application/ld+json";
+    scriptLd.text = JSON.stringify(breadcrumbLd);
+    document.head.appendChild(scriptLd);
+  }
+</script>
+
+<script src="https://fazri.my.id/feeds/posts/default?start-index=506&max-results=3&alt=json-in-script&callback=rak_info_Load"></script>
+

@@ -1,0 +1,193 @@
+---
+layout: post
+title: "automating wordpress static site deployment to github pages"
+author: admin
+categories: [wordpress,github,automation,static-site,web-development]
+description: "Learn how to fully automate static WordPress site deployments to GitHub Pages for a seamless, efficient publishing process."
+---
+
+<h2>Why Automate WordPress Static Deployments</h2>
+
+<p>Manually exporting and uploading static files from WordPress to GitHub Pages every time you update your site is painful and inefficient. Automation saves time, reduces human error, and ensures that your content stays up-to-date with minimal effort.</p>
+
+<p>I automated my own workflow after missing several post updates and realizing that publishing should feel almost invisible once set up properly. Trust me, your future self will thank you.</p>
+
+<h2>What You Need Before Starting</h2>
+
+<p>Before setting up automation, make sure you have:</p>
+
+<ul>
+<li>A working WordPress site with a static site export plugin (like Simply Static or WP2Static)</li>
+<li>A GitHub repository connected to GitHub Pages</li>
+<li>Access to GitHub Actions or a CI/CD pipeline (free with GitHub)</li>
+<li>Basic Git familiarity (push, pull, clone)</li>
+</ul>
+
+<p>Optional but helpful: a VPS or hosting where you can trigger scripts automatically if needed.</p>
+
+<h2>Setting Up GitHub Actions For Deployment</h2>
+
+<h3>1 Export Static Files Automatically</h3>
+
+<p>Some plugins like Simply Static Pro support scheduled exports. Set them up to generate a fresh static build daily, weekly, or after content updates.</p>
+
+<p>If using a plugin that doesn’t support auto-export, consider a custom WordPress cron job to run the export process on a schedule.</p>
+
+<h3>2 Push Static Files To GitHub Programmatically</h3>
+
+<p>After generating static files locally on the server, use a deployment script to push them to GitHub. Here’s a basic example script:</p>
+
+<pre><code>
+git config --global user.email "your-email@example.com"
+git config --global user.name "your-username"
+cd /path-to-static-export
+git add .
+git commit -m "Automated static export update"
+git push origin main
+</code></pre>
+
+<p>Automate this script using a WordPress hook, server cron job, or GitHub Actions workflow depending on your setup.</p>
+
+<h3>3 Example GitHub Actions Workflow</h3>
+
+<p>Create a file inside your repo at <code>.github/workflows/deploy.yml</code>:</p>
+
+<pre><code>
+name: Deploy Static WordPress
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./static-export-folder
+</code></pre>
+
+<p>Every push to <code>main</code> triggers automatic deployment to GitHub Pages. Fast, simple, reliable!</p>
+
+<h2>Handling Authentication And Secrets</h2>
+
+<p>Always use GitHub Secrets to store sensitive information like GitHub tokens, server credentials, or API keys. Never hardcode passwords directly in workflows.</p>
+
+<ul>
+<li>Go to GitHub Repository Settings</li>
+<li>Navigate to Secrets and Variables → Actions</li>
+<li>Add new secrets like <code>GITHUB_TOKEN</code> or custom deploy keys</li>
+</ul>
+
+<h2>Dealing With WordPress Dynamic Features</h2>
+
+<p>If you still need dynamic functionalities like forms or search, automate the API connection as part of your static build. This way, your static pages know where to send form data, fetch updated posts, or authenticate users even after automation.</p>
+
+<p>Example: During static export, inject a dynamic JavaScript fetch URL pointing back to your secure WordPress REST API.</p>
+
+<h2>Monitoring Deployment Health</h2>
+
+<p>Automation should not be "set and forget." Regularly monitor that:</p>
+
+<ul>
+<li>Static export files are updated as expected</li>
+<li>GitHub Pages builds pass without errors</li>
+<li>API connections are not broken</li>
+<li>Old cached versions are not served incorrectly</li>
+</ul>
+
+<p>Set up Slack or email notifications from GitHub Actions to alert you if deployments fail. Better safe than sorry!</p>
+
+<h2>My Experience Automating WordPress Static Deployment</h2>
+
+<p>After setting up full automation, publishing a new blog post became a joy again. I simply hit "Publish" in WordPress, and within 3 minutes, the live GitHub Pages site updated without me lifting another finger. No manual exports, no FTP uploads, no missed updates.</p>
+
+<p>In short: less stress, better performance, and more time to focus on writing great content.</p>
+
+<h2>Conclusion The Smart Way To Manage Static WordPress Sites</h2>
+
+<p>Automating WordPress static deployments to GitHub Pages transforms your website management from a tedious chore into a seamless, invisible process. Whether you're managing a personal blog, a company landing page, or a project portfolio, smart automation makes your life easier and your site better.</p>
+
+<p>If you want a smarter, faster, and more future-proof website, automation is not just nice — it's necessary.</p>
+
+
+
+
+
+<div class="spo" id="external-labels" aria-label="Related Labels"></div>
+
+<script>
+  function rak_info_Load(json) {
+    const labelsSet = new Set();
+    const posts = json.feed.entry;
+    if (!posts) return;
+
+    posts.forEach(post => {
+      if (post.category) {
+        post.category.forEach(cat => {
+          labelsSet.add(cat.term);
+        });
+      }
+    });
+
+    const labels = Array.from(labelsSet);
+    const container = document.getElementById("external-labels");
+
+    let html = '<section class="post-labels" aria-label="Label categories with image or video preview">';
+    html += '<ul style="list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:15px;">';
+
+    const imageUrl = "/foto.png";
+    const videoUrl = "/video.mp4";
+
+    let breadcrumbLd = {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": []
+    };
+
+    labels.forEach((label, index) => {
+      let staticPageUrl = "/indriani" + (index + 121).toString().padStart(0, '0') + "/";
+
+      let mediaElement = (index % 2 === 0)
+        ? `<img src="${imageUrl}" loading="lazy" width="100%" height="auto" style="border-radius:12px;" alt="${label}" title="${label}">`
+        : `<video src="${videoUrl}" loading="lazy" width="100%" height="auto" style="border-radius:12px;" muted autoplay loop playsinline title="${label}"></video>`;
+
+      html += `
+        <li style="display:inline-block;">
+          <a href="${staticPageUrl}" title="${label}" style="text-decoration:none;color:inherit;">
+            <figure style="margin:0;text-align:center;">
+              ${mediaElement}
+              <figcaption style="margin-top:5px;font-size:14px;">${label}</figcaption>
+            </figure>
+          </a>
+        </li>
+      `;
+
+      breadcrumbLd.itemListElement.push({
+        "@type": "ListItem",
+        "position": index + 1,
+        "name": label,
+        "item": location.origin + staticPageUrl
+      });
+    });
+
+    html += '</ul></section>';
+    container.innerHTML = html;
+
+    // Tambahkan Breadcrumb structured data ke <head>
+    const scriptLd = document.createElement("script");
+    scriptLd.type = "application/ld+json";
+    scriptLd.text = JSON.stringify(breadcrumbLd);
+    document.head.appendChild(scriptLd);
+  }
+</script>
+
+<script src="https://fazri.my.id/feeds/posts/default?start-index=500&max-results=3&alt=json-in-script&callback=rak_info_Load"></script>
+
+

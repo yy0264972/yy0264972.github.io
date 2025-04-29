@@ -1,0 +1,187 @@
+---
+layout: post
+title: "static wordpress github multi environment workflow"
+author: admin
+categories: [wordpress,github,static-site,ci-cd,web-development]
+description: "Learn how to manage development, staging, and production workflows for a static WordPress site hosted on GitHub Pages."
+---
+
+<h2>Why Multi-Environment Workflows Matter</h2>
+
+<p>Most WordPress-to-static workflows treat the site as a single entity. But when your project grows — with contributors, testers, clients — you need environments: development, staging, and production.</p>
+
+<p>Multi-environment workflows keep your live site safe while you experiment and improve behind the scenes.</p>
+
+<h2>Core Components Of Multi-Environment Workflow</h2>
+
+<ul>
+<li><strong>Development Server:</strong> A private WordPress install where changes and experiments happen first.</li>
+<li><strong>Staging Site:</strong> A static build deployed to a GitHub branch or separate repo for preview and testing.</li>
+<li><strong>Production Site:</strong> The main public GitHub Pages deployment that users see.</li>
+<li><strong>CI/CD Automation:</strong> GitHub Actions automating builds, tests, and promotions between environments.</li>
+</ul>
+
+<p>This approach mimics professional-grade deployment workflows used by larger web projects.</p>
+
+<h2>Setting Up The Development Environment</h2>
+
+<p>Set up a local or cloud WordPress instance. Use plugins like Simply Static or WP2Static to generate static builds on demand or on a schedule.</p>
+
+<p>This environment is messy by design. Break things, try new plugins, experiment with layouts — no fear, because users never see this directly.</p>
+
+<h2>Deploying A Staging Environment</h2>
+
+<p>After building a new static version, push it to a separate GitHub branch, like <code>staging</code>. Alternatively, use a completely different repository dedicated to staging builds.</p>
+
+<p>Set up GitHub Pages to serve from this branch or repo so you (or your team or clients) can preview the site before it hits production.</p>
+
+<h3>Example staging deployment with GitHub Actions:</h3>
+
+<pre><code>
+name: Deploy Staging Site
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout develop
+        uses: actions/checkout@v4
+      - name: Build and deploy
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./staging-static-folder
+          publish_branch: staging
+</code></pre>
+
+<h2>Promoting From Staging To Production</h2>
+
+<p>Once you're happy with staging, merge the changes into the <code>main</code> branch (or your production branch). A second GitHub Actions workflow automatically deploys this to your live GitHub Pages site.</p>
+
+<p>Example: after approving staging updates, use:</p>
+
+<pre><code>
+git checkout main
+git merge staging
+git push origin main
+</code></pre>
+
+<p>Simple, clean, and verifiable through Git history.</p>
+
+<h2>Managing Secrets Across Environments</h2>
+
+<ul>
+<li><strong>Separate Secrets:</strong> Use GitHub Secrets scoped to staging and production workflows independently.</li>
+<li><strong>Different APIs:</strong> Point your staging build to test APIs and your production build to live APIs.</li>
+<li><strong>Form Testing:</strong> Use sandbox forms and test webhook URLs for staging to avoid messing up live data.</li>
+</ul>
+
+<p>This separation ensures you never accidentally leak production data or API keys during testing phases.</p>
+
+<h2>Example Real-World Use Case</h2>
+
+<p>In one client project, we maintained three static WordPress sites under one repo:</p>
+
+<ul>
+<li><strong>development:</strong> Updated multiple times daily by developers.</li>
+<li><strong>staging:</strong> Updated weekly after internal QA checks.</li>
+<li><strong>production:</strong> Updated monthly after client sign-off.</li>
+</ul>
+
+<p>Each environment had its own GitHub Actions workflow, Secrets, and even analytics configurations. This made scaling from a 5-page site to a 500-page documentation system smooth and safe without risking outages.</p>
+
+<h2>Benefits Of Multi-Environment Static WordPress Workflow</h2>
+
+<ul>
+<li><strong>Safety:</strong> Reduce the risk of bad deployments breaking your live site.</li>
+<li><strong>Speed:</strong> QA teams can validate staging sites immediately without waiting for manual uploads.</li>
+<li><strong>Scalability:</strong> Add more workflows easily as the team or project grows.</li>
+<li><strong>Professionalism:</strong> Impress clients and stakeholders by having an organized, reliable publishing pipeline.</li>
+</ul>
+
+<h2>Conclusion Elevate Your Static WordPress Game</h2>
+
+<p>Moving to a multi-environment workflow brings static WordPress sites into the realm of modern web operations. With GitHub, GitHub Pages, and automation, you can confidently build, test, and deploy without fear — and with a lot more efficiency and reliability.</p>
+
+<p>In the end, it’s about creating a system where your focus remains on quality content and user experience, not firefighting broken deployments.</p>
+
+
+
+
+<div class="spo" id="external-labels" aria-label="Related Labels"></div>
+
+<script>
+  function rak_info_Load(json) {
+    const labelsSet = new Set();
+    const posts = json.feed.entry;
+    if (!posts) return;
+
+    posts.forEach(post => {
+      if (post.category) {
+        post.category.forEach(cat => {
+          labelsSet.add(cat.term);
+        });
+      }
+    });
+
+    const labels = Array.from(labelsSet);
+    const container = document.getElementById("external-labels");
+
+    let html = '<section class="post-labels" aria-label="Label categories with image or video preview">';
+    html += '<ul style="list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:15px;">';
+
+    const imageUrl = "/foto.png";
+    const videoUrl = "/video.mp4";
+
+    let breadcrumbLd = {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": []
+    };
+
+    labels.forEach((label, index) => {
+      let staticPageUrl = "/indriani" + (index + 121).toString().padStart(0, '0') + "/";
+
+      let mediaElement = (index % 2 === 0)
+        ? `<img src="${imageUrl}" loading="lazy" width="100%" height="auto" style="border-radius:12px;" alt="${label}" title="${label}">`
+        : `<video src="${videoUrl}" loading="lazy" width="100%" height="auto" style="border-radius:12px;" muted autoplay loop playsinline title="${label}"></video>`;
+
+      html += `
+        <li style="display:inline-block;">
+          <a href="${staticPageUrl}" title="${label}" style="text-decoration:none;color:inherit;">
+            <figure style="margin:0;text-align:center;">
+              ${mediaElement}
+              <figcaption style="margin-top:5px;font-size:14px;">${label}</figcaption>
+            </figure>
+          </a>
+        </li>
+      `;
+
+      breadcrumbLd.itemListElement.push({
+        "@type": "ListItem",
+        "position": index + 1,
+        "name": label,
+        "item": location.origin + staticPageUrl
+      });
+    });
+
+    html += '</ul></section>';
+    container.innerHTML = html;
+
+    // Tambahkan Breadcrumb structured data ke <head>
+    const scriptLd = document.createElement("script");
+    scriptLd.type = "application/ld+json";
+    scriptLd.text = JSON.stringify(breadcrumbLd);
+    document.head.appendChild(scriptLd);
+  }
+</script>
+
+<script src="https://fazri.my.id/feeds/posts/default?start-index=504&max-results=3&alt=json-in-script&callback=rak_info_Load"></script>
+
+
+

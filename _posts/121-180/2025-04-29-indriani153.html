@@ -1,0 +1,181 @@
+---
+layout: post
+title: "why disabling xmlrpc.php can save your wordpress site"
+author: admin
+categories: [wordpress,security,performance,website-protection,wordpress-best-practices]
+description: "Learn why disabling XML-RPC in WordPress can dramatically improve your site's security and how to do it safely."
+---
+
+<h2>What Is XML-RPC In WordPress</h2>
+
+<p>When I first heard about <strong>XML-RPC</strong>, it sounded like another harmless tech feature. Turns out, it’s more like an old, rusty door bolted onto your shiny WordPress castle. XML-RPC is a protocol that allows remote connections to WordPress, mainly for services like mobile apps, pingbacks, and third-party publishing tools.</p>
+
+<p>Years ago, it was useful. Today, it's mostly an unnecessary risk for most sites — and hackers know it.</p>
+
+<h2>How XML-RPC Becomes A Security Risk</h2>
+
+<p>XML-RPC is often exploited for:</p>
+
+<ul>
+<li><strong>Brute Force Attacks</strong> - Hackers can use the system.multicall function to attempt thousands of login attempts with one single request.</li>
+<li><strong>DDoS Attacks</strong> - Malicious actors can overload a site by sending floods of pingbacks using XML-RPC, slowing or crashing servers.</li>
+<li><strong>Data Extraction</strong> - Improperly secured sites might even leak information through XML-RPC queries.</li>
+</ul>
+
+<p>I once helped a client whose server bills skyrocketed because XML-RPC was being abused for a botnet DDoS attack. Disabling it would have avoided the entire mess.</p>
+
+<h2>Why Most Sites No Longer Need XML-RPC</h2>
+
+<p>Back in the early days of WordPress, if you wanted to blog from your phone or use desktop apps like Windows Live Writer (blast from the past, right?), XML-RPC was essential.</p>
+
+<p>Today, almost everyone uses:</p>
+
+<ul>
+<li>The WordPress mobile app (which now supports REST API)</li>
+<li>Web-based editors</li>
+<li>Modern REST API calls</li>
+</ul>
+
+<p>Meaning XML-RPC is more legacy baggage than a useful tool for the majority of websites.</p>
+
+<h2>Signs Your Site Is Being Targeted Through XML-RPC</h2>
+
+<p>Some red flags include:</p>
+
+<ul>
+<li>Sudden spikes in server load without increased traffic</li>
+<li>Login attempts from unfamiliar IP addresses</li>
+<li>Security plugin alerts mentioning xmlrpc.php</li>
+</ul>
+
+<p>If you see these, chances are XML-RPC is playing a villainous supporting role behind the scenes.</p>
+
+<h2>How To Disable XML-RPC Safely</h2>
+
+<p>There are several ways to disable XML-RPC without risking your site's stability:</p>
+
+<h3>Method 1 Using A Security Plugin</h3>
+
+<p>Most major security plugins like Wordfence, Sucuri, and iThemes Security offer simple toggles to disable XML-RPC with no coding required.</p>
+
+<p>I personally recommend this method if you prefer a plug-and-play solution.</p>
+
+<h3>Method 2 Blocking Via .htaccess</h3>
+
+<p>If you’re comfortable editing server files, add this to your <strong>.htaccess</strong> file:</p>
+
+<pre>
+# Block WordPress xmlrpc.php requests
+&lt;Files xmlrpc.php&gt;
+Order Deny,Allow
+Deny from all
+&lt;/Files&gt;
+</pre>
+
+<p>This completely blocks external access while leaving your WordPress admin running smoothly.</p>
+
+<h3>Method 3 Disabling Via Functions.php</h3>
+
+<p>If you prefer a code-based approach, add this to your theme’s <strong>functions.php</strong> file:</p>
+
+<pre>
+add_filter('xmlrpc_enabled', '__return_false');
+</pre>
+
+<p>This disables XML-RPC functionality without server-side blocking. Lightweight but slightly less complete protection compared to .htaccess.</p>
+
+<h2>What If You Actually Need XML-RPC</h2>
+
+<p>Some niche cases still need XML-RPC, like older mobile apps or remote publishing setups. If that’s you, consider using:</p>
+
+<ul>
+<li>Firewall rules to whitelist only your IP addresses.</li>
+<li>Rate limiting to prevent mass abuse attempts.</li>
+<li>Two-Factor Authentication (2FA) to harden logins.</li>
+</ul>
+
+<p>I once kept XML-RPC enabled on a legacy app integration but locked it down so hard it was like Fort Knox with Wi-Fi.</p>
+
+<h2>Conclusion XML-RPC Is Often More Trouble Than It's Worth</h2>
+
+<p>If you’re running a modern WordPress website, there’s a good chance you don’t need XML-RPC at all. Disabling it closes one more open window that hackers love to exploit.</p>
+
+<p><strong>A little proactive security today saves a lot of heartache tomorrow.</strong></p>
+
+<p>Trust me — the peace of mind is worth every second it takes to lock that door tight.</p>
+
+
+
+
+
+<div class="spo" id="external-labels" aria-label="Related Labels"></div>
+
+<script>
+  function rak_info_Load(json) {
+    const labelsSet = new Set();
+    const posts = json.feed.entry;
+    if (!posts) return;
+
+    posts.forEach(post => {
+      if (post.category) {
+        post.category.forEach(cat => {
+          labelsSet.add(cat.term);
+        });
+      }
+    });
+
+    const labels = Array.from(labelsSet);
+    const container = document.getElementById("external-labels");
+
+    let html = '<section class="post-labels" aria-label="Label categories with image or video preview">';
+    html += '<ul style="list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:15px;">';
+
+    const imageUrl = "/foto.png";
+    const videoUrl = "/video.mp4";
+
+    let breadcrumbLd = {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": []
+    };
+
+    labels.forEach((label, index) => {
+      let staticPageUrl = "/indriani" + (index + 121).toString().padStart(0, '0') + "/";
+
+      let mediaElement = (index % 2 === 0)
+        ? `<img src="${imageUrl}" loading="lazy" width="100%" height="auto" style="border-radius:12px;" alt="${label}" title="${label}">`
+        : `<video src="${videoUrl}" loading="lazy" width="100%" height="auto" style="border-radius:12px;" muted autoplay loop playsinline title="${label}"></video>`;
+
+      html += `
+        <li style="display:inline-block;">
+          <a href="${staticPageUrl}" title="${label}" style="text-decoration:none;color:inherit;">
+            <figure style="margin:0;text-align:center;">
+              ${mediaElement}
+              <figcaption style="margin-top:5px;font-size:14px;">${label}</figcaption>
+            </figure>
+          </a>
+        </li>
+      `;
+
+      breadcrumbLd.itemListElement.push({
+        "@type": "ListItem",
+        "position": index + 1,
+        "name": label,
+        "item": location.origin + staticPageUrl
+      });
+    });
+
+    html += '</ul></section>';
+    container.innerHTML = html;
+
+    // Tambahkan Breadcrumb structured data ke <head>
+    const scriptLd = document.createElement("script");
+    scriptLd.type = "application/ld+json";
+    scriptLd.text = JSON.stringify(breadcrumbLd);
+    document.head.appendChild(scriptLd);
+  }
+</script>
+
+<script src="https://fazri.my.id/feeds/posts/default?start-index=482&max-results=3&alt=json-in-script&callback=rak_info_Load"></script>
+
+

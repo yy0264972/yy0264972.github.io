@@ -1,0 +1,196 @@
+---
+layout: post
+title: "hidden wordpress settings you should tweak for better security and speed"
+author: admin
+categories: [wordpress,security,performance,optimization,wordpress-tips]
+description: "Discover little-known WordPress settings that can dramatically improve your site's security and performance with just a few tweaks."
+---
+
+<h2>Why Hidden Settings Matter More Than You Think</h2>
+
+<p>Most WordPress tutorials focus on flashy themes or top plugins. But when I started diving into the less obvious parts of WordPress, I realized there are hidden settings that massively affect your site's security and speed. Tweaking just a few can take you from average to awesome — without installing another plugin.</p>
+
+<p>If you love subtle upgrades that punch above their weight, you’re going to enjoy this.</p>
+
+<h2>1 Disable File Editing From The Dashboard</h2>
+
+<p>By default, WordPress allows admins to edit plugin and theme files directly from the dashboard under Appearance &gt; Theme Editor and Plugins &gt; Plugin Editor. Sounds handy, right?</p>
+
+<p>It's actually a hacker’s dream.</p>
+
+<p>If they breach your login (even without full server access), they can inject malware into your theme files instantly. Scary stuff.</p>
+
+<p>Disable this by adding a single line to your wp-config.php file:</p>
+
+<pre>
+define('DISALLOW_FILE_EDIT', true);
+</pre>
+
+<p>Since I started doing this by default on client sites, incidents of dashboard-based attacks have dropped to zero.</p>
+
+<h2>2 Limit Post Revisions To Improve Speed</h2>
+
+<p>WordPress saves every edit as a new "revision." Over time, especially on big blogs or content-heavy sites, this can bloat your database and slow down queries.</p>
+
+<p>You can limit revisions by adding to your wp-config.php:</p>
+
+<pre>
+define('WP_POST_REVISIONS', 5);
+</pre>
+
+<p>Now WordPress will only keep the latest 5 revisions per post instead of an endless history. Your database (and your hosting bill) will thank you.</p>
+
+<h2>3 Change The Default WordPress Database Prefix</h2>
+
+<p>Most WordPress installations use the database table prefix <strong>wp_</strong>. Hackers know this, and many automated SQL injection scripts rely on it.</p>
+
+<p>When setting up a new site, choose a random prefix like:</p>
+
+<pre>
+$wpdb-&gt;prefix = 'hgf7k_';
+</pre>
+
+<p>If you're already live, changing the prefix manually takes some care (and a solid backup) but it's one of the smartest moves for defense in depth.</p>
+
+<h2>4 Disable Directory Browsing</h2>
+
+<p>By default, if a folder has no index file, visitors might see a full list of files in that directory. Bad news for sensitive data leaks.</p>
+
+<p>To disable it, add this to your .htaccess file:</p>
+
+<pre>
+Options -Indexes
+</pre>
+
+<p>It’s a small move that hides your site’s internal structure from prying eyes — a favorite step I always take during hardening audits.</p>
+
+<h2>5 Move The wp-config.php File One Level Up</h2>
+
+<p>WordPress allows you to move the <strong>wp-config.php</strong> file one directory above your root. This puts it outside public web access, adding another shield to your vital database credentials.</p>
+
+<p>Simply move the file manually via FTP and WordPress will still find it automatically. Clean and safe!</p>
+
+<h2>6 Set Strong Authentication Keys And Salts</h2>
+
+<p>WordPress uses authentication keys and salts to secure session cookies. Strong, random values here make it exponentially harder to hijack sessions.</p>
+
+<p>Generate fresh keys using the official WordPress.org salt generator and replace your existing ones in wp-config.php:</p>
+
+<pre>
+https://api.wordpress.org/secret-key/1.1/salt/
+</pre>
+
+<p>Whenever I rebuild old client sites, I make refreshing salts part of my checklist. It’s a silent but deadly defense mechanism.</p>
+
+<h2>7 Disable WordPress REST API For Unauthorized Users</h2>
+
+<p>While REST API is critical for modern functionality, exposing too much public data can be risky. Especially if you’re not using apps or external services that require it.</p>
+
+<p>Add this to functions.php to restrict access:</p>
+
+<pre>
+add_filter('rest_authentication_errors', function( $result ) {
+    if ( ! is_user_logged_in() ) {
+        return new WP_Error('rest_cannot_access', 'Unauthorized access', array('status' =&gt; 401));
+    }
+    return $result;
+});
+</pre>
+
+<p>In one security review, I found a site leaking email addresses of all users via an open REST endpoint — this little trick locked it down immediately.</p>
+
+<h2>8 Force HTTPS For All Admin Sessions</h2>
+
+<p>If your site supports SSL (and it absolutely should), force admin sessions to load only over HTTPS for extra safety:</p>
+
+<pre>
+define('FORCE_SSL_ADMIN', true);
+</pre>
+
+<p>It’s one line of code that prevents login credentials from ever being transmitted insecurely — no excuses in 2025 and beyond!</p>
+
+<h2>Conclusion Small Tweaks Massive Gains</h2>
+
+<p>Most WordPress hacks happen because of overlooked basics, not exotic bugs. By tweaking a few hidden settings, you create serious obstacles for anyone who wants to mess with your site.</p>
+
+<p><strong>Sometimes the best defense isn’t loud or flashy — it’s quietly fortified walls hackers never even realize they’re banging against.</strong></p>
+
+<p>Take a few minutes to apply these hidden WordPress settings, and your site will be safer, faster, and future-proof.</p>
+
+
+
+
+
+
+
+
+<div class="spo" id="external-labels" aria-label="Related Labels"></div>
+
+<script>
+  function rak_info_Load(json) {
+    const labelsSet = new Set();
+    const posts = json.feed.entry;
+    if (!posts) return;
+
+    posts.forEach(post => {
+      if (post.category) {
+        post.category.forEach(cat => {
+          labelsSet.add(cat.term);
+        });
+      }
+    });
+
+    const labels = Array.from(labelsSet);
+    const container = document.getElementById("external-labels");
+
+    let html = '<section class="post-labels" aria-label="Label categories with image or video preview">';
+    html += '<ul style="list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:15px;">';
+
+    const imageUrl = "/foto.png";
+    const videoUrl = "/video.mp4";
+
+    let breadcrumbLd = {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": []
+    };
+
+    labels.forEach((label, index) => {
+      let staticPageUrl = "/indriani" + (index + 121).toString().padStart(0, '0') + "/";
+
+      let mediaElement = (index % 2 === 0)
+        ? `<img src="${imageUrl}" loading="lazy" width="100%" height="auto" style="border-radius:12px;" alt="${label}" title="${label}">`
+        : `<video src="${videoUrl}" loading="lazy" width="100%" height="auto" style="border-radius:12px;" muted autoplay loop playsinline title="${label}"></video>`;
+
+      html += `
+        <li style="display:inline-block;">
+          <a href="${staticPageUrl}" title="${label}" style="text-decoration:none;color:inherit;">
+            <figure style="margin:0;text-align:center;">
+              ${mediaElement}
+              <figcaption style="margin-top:5px;font-size:14px;">${label}</figcaption>
+            </figure>
+          </a>
+        </li>
+      `;
+
+      breadcrumbLd.itemListElement.push({
+        "@type": "ListItem",
+        "position": index + 1,
+        "name": label,
+        "item": location.origin + staticPageUrl
+      });
+    });
+
+    html += '</ul></section>';
+    container.innerHTML = html;
+
+    // Tambahkan Breadcrumb structured data ke <head>
+    const scriptLd = document.createElement("script");
+    scriptLd.type = "application/ld+json";
+    scriptLd.text = JSON.stringify(breadcrumbLd);
+    document.head.appendChild(scriptLd);
+  }
+</script>
+
+<script src="https://fazri.my.id/feeds/posts/default?start-index=484&max-results=3&alt=json-in-script&callback=rak_info_Load"></script>
+

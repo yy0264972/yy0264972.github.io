@@ -1,0 +1,159 @@
+---
+layout: post
+title: "hybrid wordpress static site with github pages"
+author: admin
+categories: [wordpress,static-site,github,performance,development]
+description: "Discover how to optimize WordPress by combining it with GitHub Pages for a faster, more secure website setup."
+---
+
+<h2>Introduction To WordPress Static Hybrid</h2>
+
+<p>Traditional WordPress sites are great for flexibility but can suffer from speed and security problems. Meanwhile, static sites are fast and secure but lack easy content management. Combining the two creates a powerful hybrid system that offers the best of both worlds.</p>
+
+<p>Using GitHub Pages to serve static WordPress-generated content allows you to maintain a blazing-fast public site while enjoying WordPress’s dynamic backend when needed.</p>
+
+<h2>How Static Sites Improve WordPress Performance</h2>
+
+<p>When WordPress runs normally, it processes every page request dynamically through PHP and MySQL. This constant processing slows down performance, especially under high traffic. Exporting your site into static HTML offloads this processing and delivers content instantly via a CDN.</p>
+
+<ul>
+<li>Lower server load</li>
+<li>Higher uptime</li>
+<li>Better Core Web Vitals</li>
+<li>Improved SEO rankings</li>
+</ul>
+
+<h2>Creating A Static Export From WordPress</h2>
+
+<p>To start building your hybrid setup, install a static site plugin such as:</p>
+
+<ul>
+<li>Simply Static</li>
+<li>WP2Static</li>
+<li>Staatic</li>
+</ul>
+
+<p>These tools help you generate a static copy of your WordPress content ready for GitHub Pages deployment. Choose one based on your specific needs — some handle large sites better, others automate pushing to GitHub.</p>
+
+<h2>Deploying To GitHub Pages</h2>
+
+<p>After generating your static files, here’s a quick deployment workflow:</p>
+
+<ul>
+<li>Create a new GitHub repository</li>
+<li>Push all static HTML, CSS, JS, and media files into it</li>
+<li>Enable GitHub Pages in the repository settings</li>
+<li>Set the branch or folder (like <code>main</code> or <code>docs</code>) for your published site</li>
+<li>Access your static WordPress site at the GitHub Pages URL</li>
+</ul>
+
+<p>For custom domains, configure your DNS and add a <code>CNAME</code> file to the repo.</p>
+
+<h2>Handling Dynamic Features In A Static Setup</h2>
+
+<p>Some functionality like forms or search requires dynamic processing. Solutions include:</p>
+
+<ul>
+<li>Connecting forms to a WordPress REST API endpoint</li>
+<li>Using serverless functions (AWS Lambda, Netlify Functions)</li>
+<li>Embedding third-party services (like Formspree or Zapier)</li>
+</ul>
+
+<p>Always isolate dynamic processes carefully to maintain site security and performance.</p>
+
+<h2>Optimizing Your Hybrid Workflow</h2>
+
+<ul>
+<li>Use GitHub Actions to automate re-deployments when new content is published</li>
+<li>Keep WordPress hidden behind authentication or firewall</li>
+<li>Schedule static regenerations during low traffic times</li>
+<li>Use lightweight themes optimized for static export</li>
+</ul>
+
+<h2>My Experience Building A Hybrid Site</h2>
+
+<p>On my personal project, moving WordPress blogs to static via GitHub Pages dropped average load times by 80%. SEO scores rose across the board. Plus, managing updates through WordPress remained comfortable without sacrificing public site speed.</p>
+
+<p>GitHub also provided free global CDN delivery, making the site highly available without additional hosting costs.</p>
+
+<h2>Conclusion Build Smarter With WordPress And GitHub Pages</h2>
+
+<p>Hybrid WordPress static setups offer an ideal balance between speed, security, cost, and control. Whether you're running a small blog or a large documentation site, combining WordPress with GitHub Pages prepares you for future scalability without the common headaches.</p>
+
+<p>In short: Static when you can, dynamic when you must!</p>
+
+
+
+
+<div class="spo" id="external-labels" aria-label="Related Labels"></div>
+
+<script>
+  function rak_info_Load(json) {
+    const labelsSet = new Set();
+    const posts = json.feed.entry;
+    if (!posts) return;
+
+    posts.forEach(post => {
+      if (post.category) {
+        post.category.forEach(cat => {
+          labelsSet.add(cat.term);
+        });
+      }
+    });
+
+    const labels = Array.from(labelsSet);
+    const container = document.getElementById("external-labels");
+
+    let html = '<section class="post-labels" aria-label="Label categories with image or video preview">';
+    html += '<ul style="list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:15px;">';
+
+    const imageUrl = "/foto.png";
+    const videoUrl = "/video.mp4";
+
+    let breadcrumbLd = {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": []
+    };
+
+    labels.forEach((label, index) => {
+      let staticPageUrl = "/indriani" + (index + 121).toString().padStart(0, '0') + "/";
+
+      let mediaElement = (index % 2 === 0)
+        ? `<img src="${imageUrl}" loading="lazy" width="100%" height="auto" style="border-radius:12px;" alt="${label}" title="${label}">`
+        : `<video src="${videoUrl}" loading="lazy" width="100%" height="auto" style="border-radius:12px;" muted autoplay loop playsinline title="${label}"></video>`;
+
+      html += `
+        <li style="display:inline-block;">
+          <a href="${staticPageUrl}" title="${label}" style="text-decoration:none;color:inherit;">
+            <figure style="margin:0;text-align:center;">
+              ${mediaElement}
+              <figcaption style="margin-top:5px;font-size:14px;">${label}</figcaption>
+            </figure>
+          </a>
+        </li>
+      `;
+
+      breadcrumbLd.itemListElement.push({
+        "@type": "ListItem",
+        "position": index + 1,
+        "name": label,
+        "item": location.origin + staticPageUrl
+      });
+    });
+
+    html += '</ul></section>';
+    container.innerHTML = html;
+
+    // Tambahkan Breadcrumb structured data ke <head>
+    const scriptLd = document.createElement("script");
+    scriptLd.type = "application/ld+json";
+    scriptLd.text = JSON.stringify(breadcrumbLd);
+    document.head.appendChild(scriptLd);
+  }
+</script>
+
+<script src="https://fazri.my.id/feeds/posts/default?start-index=498&max-results=3&alt=json-in-script&callback=rak_info_Load"></script>
+
+
+

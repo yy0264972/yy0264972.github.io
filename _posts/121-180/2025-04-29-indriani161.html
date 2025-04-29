@@ -1,0 +1,177 @@
+---
+layout: post
+title: "how to secure your wordpress login page against hackers"
+author: admin
+categories: [wordpress,security,website-protection,hacking-prevention,cybersecurity]
+description: "Learn how to secure your WordPress login page from hackers with real-world techniques and practical strategies based on personal experience."
+---
+
+<h2>The Wake-Up Call I Got From A WordPress Brute Force Attack</h2>
+
+<p>It was a normal Monday morning. I logged into my hosting dashboard and saw hundreds of failed login attempts overnight. Someone — or something — was trying to break into my WordPress site.</p>
+
+<p>My heart raced. I wasn't even running a big site yet! Why would anyone bother? But hackers don't care about your traffic numbers — they just want easy targets.</p>
+
+<p>That day, I learned the hard way that securing your WordPress login page is not optional. It's critical for survival online.</p>
+
+<h2>Why The WordPress Login Page Is A Hacker's Favorite Target</h2>
+
+<ul>
+<li><strong>It's predictable</strong> — by default, every WordPress site has /wp-login.php and /wp-admin/ endpoints.</li>
+<li><strong>Easy to automate</strong> — bots can attempt thousands of username/password combinations in minutes.</li>
+<li><strong>Huge rewards</strong> — if they get in, hackers can plant malware, steal data, or hijack your traffic for scams.</li>
+<li><strong>Most users don't protect it</strong> — leaving it wide open for brute force or credential stuffing attacks.</li>
+</ul>
+
+<p>Basically, if you don't take steps to secure your login, you're like a house with the front door wide open and a neon "WELCOME" sign.</p>
+
+<h2>How I Secured My WordPress Login Page Step By Step</h2>
+
+<h3>Step 1: Change The Login URL</h3>
+
+<p>I used the free plugin WPS Hide Login to move my login page from the standard /wp-login.php to a custom URL only I knew.</p>
+
+<p>Result: automated bots trying the default path instantly failed.</p>
+
+<h3>Step 2: Limit Login Attempts</h3>
+
+<p>I installed Limit Login Attempts Reloaded to block IP addresses after a few failed attempts.</p>
+
+<p>No more thousands of password guesses in one sitting. It was like installing a security guard who slammed the door shut after three wrong answers.</p>
+
+<h3>Step 3: Use Two-Factor Authentication (2FA)</h3>
+
+<p>Even if someone guessed my password, they would still need a code from my phone. I enabled 2FA using the plugin WP 2FA for all admin and editor accounts.</p>
+
+<p>This was by far the biggest security upgrade — an extra wall hackers couldn't easily scale.</p>
+
+<h3>Step 4: Strong Unique Passwords For Every Account</h3>
+
+<p>I stopped using easy-to-guess passwords like "blogadmin2023" (facepalm) and switched to long, random passwords stored in a password manager.</p>
+
+<p>Also, I created unique accounts for different users — no more "admin" usernames floating around.</p>
+
+<h3>Step 5: Hide Username Exposure</h3>
+
+<p>Many themes and settings accidentally expose your username in author archives or metadata. I used plugins like Edit Author Slug to customize author URLs and hide real usernames.</p>
+
+<p>Fewer clues for hackers meant fewer successful attacks.</p>
+
+<h2>Real Results After Locking Down My Login Page</h2>
+
+<p>Here's what happened within three months after I secured my login page properly:</p>
+
+<ul>
+<li>Zero successful brute force attacks</li>
+<li>Blocked over 3,000 bot attempts automatically</li>
+<li>Improved server performance (less load from constant login requests)</li>
+<li>Peace of mind knowing my site was not a sitting duck</li>
+</ul>
+
+<p>Security doesn't guarantee immunity — but it buys you precious time and protection against easy exploitation.</p>
+
+<h2>Common Mistakes That Keep Your WordPress Login Vulnerable</h2>
+
+<ul>
+<li>Leaving the login URL at /wp-login.php without protection</li>
+<li>Using weak or reused passwords</li>
+<li>Disabling 2FA because it feels "inconvenient"</li>
+<li>Granting admin rights to too many users</li>
+<li>Ignoring strange login patterns in logs or dashboards</li>
+</ul>
+
+<p>Most WordPress hacks aren't clever. They succeed because site owners leave obvious doors wide open.</p>
+
+<h2>Best Practices For Ongoing Login Security</h2>
+
+<ul>
+<li>Regularly update WordPress core, plugins, and themes</li>
+<li>Audit user accounts and permissions every few months</li>
+<li>Monitor login activity using security plugins like Wordfence or iThemes Security</li>
+<li>Use SSL/HTTPS for all login and admin pages</li>
+<li>Never log in from unsecured public Wi-Fi without a VPN</li>
+</ul>
+
+<p>Small habits build massive walls over time, keeping your site safer day after day.</p>
+
+<h2>Final Thoughts Securing Your WordPress Login Page Is Non-Negotiable</h2>
+
+<p>If you're serious about your WordPress site — whether it's a personal blog, an online store, or a business website — you must secure your login page.</p>
+
+<p>It's one of the easiest attack surfaces for hackers, but also one of the easiest to defend if you take the right steps.</p>
+
+<p>Don't wait for a breach to teach you this lesson the hard way. Spend an hour today locking things down. Your future self (and your website visitors) will thank you.</p>
+
+
+
+<div class="spo" id="external-labels" aria-label="Related Labels"></div>
+
+<script>
+  function rak_info_Load(json) {
+    const labelsSet = new Set();
+    const posts = json.feed.entry;
+    if (!posts) return;
+
+    posts.forEach(post => {
+      if (post.category) {
+        post.category.forEach(cat => {
+          labelsSet.add(cat.term);
+        });
+      }
+    });
+
+    const labels = Array.from(labelsSet);
+    const container = document.getElementById("external-labels");
+
+    let html = '<section class="post-labels" aria-label="Label categories with image or video preview">';
+    html += '<ul style="list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:15px;">';
+
+    const imageUrl = "/foto.png";
+    const videoUrl = "/video.mp4";
+
+    let breadcrumbLd = {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": []
+    };
+
+    labels.forEach((label, index) => {
+      let staticPageUrl = "/indriani" + (index + 121).toString().padStart(0, '0') + "/";
+
+      let mediaElement = (index % 2 === 0)
+        ? `<img src="${imageUrl}" loading="lazy" width="100%" height="auto" style="border-radius:12px;" alt="${label}" title="${label}">`
+        : `<video src="${videoUrl}" loading="lazy" width="100%" height="auto" style="border-radius:12px;" muted autoplay loop playsinline title="${label}"></video>`;
+
+      html += `
+        <li style="display:inline-block;">
+          <a href="${staticPageUrl}" title="${label}" style="text-decoration:none;color:inherit;">
+            <figure style="margin:0;text-align:center;">
+              ${mediaElement}
+              <figcaption style="margin-top:5px;font-size:14px;">${label}</figcaption>
+            </figure>
+          </a>
+        </li>
+      `;
+
+      breadcrumbLd.itemListElement.push({
+        "@type": "ListItem",
+        "position": index + 1,
+        "name": label,
+        "item": location.origin + staticPageUrl
+      });
+    });
+
+    html += '</ul></section>';
+    container.innerHTML = html;
+
+    // Tambahkan Breadcrumb structured data ke <head>
+    const scriptLd = document.createElement("script");
+    scriptLd.type = "application/ld+json";
+    scriptLd.text = JSON.stringify(breadcrumbLd);
+    document.head.appendChild(scriptLd);
+  }
+</script>
+
+<script src="https://fazri.my.id/feeds/posts/default?start-index=444&max-results=3&alt=json-in-script&callback=rak_info_Load"></script>
+
+

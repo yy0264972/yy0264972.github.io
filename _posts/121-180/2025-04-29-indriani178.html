@@ -1,0 +1,192 @@
+---
+layout: post
+title: "critical mistakes when setting up wordpress backups"
+author: admin
+categories: [wordpress,security,backups,website-management,wordpress-best-practices]
+description: "Discover the biggest mistakes site owners make when creating WordPress backups and how you can avoid them to protect your website's future."
+---
+
+<h2>Why WordPress Backups Are Your Last Line Of Defense</h2>
+
+<p>When disaster strikes — a hack, a server crash, a bad update — your backups are your lifeline. I learned this lesson the hard way after losing an entire site due to a corrupted backup. It felt like watching months of work vanish into thin air.</p>
+
+<p>Backups aren’t optional. They are non-negotiable insurance policies for your WordPress site. But sadly, many site owners set them up wrong, leaving themselves wide open to disaster.</p>
+
+<h2>The Most Common WordPress Backup Mistakes</h2>
+
+<p>Over the years, I’ve spotted a pattern. Certain mistakes pop up again and again among WordPress users. Avoiding these could mean the difference between a five-minute recovery and a five-week nightmare.</p>
+
+<ul>
+<li><strong>Relying Only On Hosting Backups</strong> - Many hosts offer daily backups, but relying solely on them is risky. If your hosting account gets hacked, so do your backups.</li>
+<li><strong>Storing Backups On The Same Server</strong> - If your server fails, both your site and its backups are toast.</li>
+<li><strong>Not Testing Backup Restores</strong> - A backup is useless if you can’t restore it properly. Always test restores before trusting your setup.</li>
+</ul>
+
+<p>I once helped a client who thought they had solid backups — until we tried restoring, and every file was corrupted. Lesson learned: trust, but verify.</p>
+
+<h2>The Dangers Of Skipping Off-Site Backups</h2>
+
+<p>Imagine having all your site’s backups neatly stored... right next to the original server files. Now imagine that server getting wiped by ransomware. That’s what happened to a blogger I knew. No off-site copies. No way back.</p>
+
+<p>Always store backups in at least two places:</p>
+
+<ul>
+<li>A cloud service like Dropbox, Google Drive, or Amazon S3.</li>
+<li>Local storage like an external hard drive for extra redundancy.</li>
+</ul>
+
+<p>I personally automate off-site backups to both Dropbox and S3 for critical sites. Belt and suspenders!</p>
+
+<h2>Backing Up Only Database Or Only Files</h2>
+
+<p>WordPress backups need to cover two key areas:</p>
+
+<ul>
+<li><strong>The database</strong> - stores your posts, pages, comments, and settings.</li>
+<li><strong>Site files</strong> - including themes, plugins, media uploads, and core files.</li>
+</ul>
+
+<p>Backing up just one without the other is like copying half a book and thinking you saved the whole story.</p>
+
+<p>One client once lost all their images because their backup plan only covered the database — no media library included. Painful and preventable.</p>
+
+<h2>Neglecting Backup Scheduling</h2>
+
+<p>Manual backups are fine once in a while, but automation is your best friend. Forgetting to back up at the right times can leave big gaps in your protection.</p>
+
+<ul>
+<li>Set daily backups for active blogs or stores.</li>
+<li>Set weekly backups for static sites or low-activity pages.</li>
+<li>Trigger backups before major updates or new deployments.</li>
+</ul>
+
+<p>In my experience, forgetting to back up right before a WordPress core update is a recipe for anxiety when things go sideways.</p>
+
+<h2>Backup Retention Policies Save You From Silent Errors</h2>
+
+<p>Keeping just the latest backup sounds efficient, but what if that backup is already infected or broken?</p>
+
+<p>Set a retention policy to keep several previous versions, such as:</p>
+
+<ul>
+<li>At least 7 daily backups.</li>
+<li>4 weekly backups.</li>
+<li>3 monthly backups.</li>
+</ul>
+
+<p>This way, if today's backup is bad, yesterday's, last week's, or last month's might still save you.</p>
+
+<h2>Ignoring Backup Security</h2>
+
+<p>Backups are valuable targets for hackers. Treat them like treasure:</p>
+
+<ul>
+<li>Encrypt backups before storage.</li>
+<li>Use strong passwords for cloud backup accounts.</li>
+<li>Restrict backup download permissions to trusted users only.</li>
+</ul>
+
+<p>I’ve seen cases where backup files were stored publicly accessible on servers — basically handing over the site to anyone who stumbled across them.</p>
+
+<h2>Choosing The Right Backup Solutions</h2>
+
+<p>When picking backup solutions, consider:</p>
+
+<ul>
+<li>Does it offer full-site backups, not just database?</li>
+<li>Can it send backups off-site automatically?</li>
+<li>Is restore functionality fast and reliable?</li>
+</ul>
+
+<p>I personally recommend combining a trusted WordPress plugin like UpdraftPlus or BackupBuddy with a manual server-side cron job for maximum resilience.</p>
+
+<h2>Pro Tip: Snapshot Your Site Before Big Changes</h2>
+
+<p>Before any major update — new theme, plugin, or WordPress core — create a fresh manual backup or snapshot.</p>
+
+<p>It’s a five-minute job that can save you hours of troubleshooting if something breaks unexpectedly. Trust me, future-you will be grateful.</p>
+
+<h2>Conclusion Good Backups Are A Superpower</h2>
+
+<p>Building a successful WordPress site takes time, energy, creativity, and care. Losing it all because of a sloppy backup strategy would be heartbreaking.</p>
+
+<p><strong>Backups aren’t just technical tasks. They’re love letters to your future self.</strong></p>
+
+<p>Do them well, review them often, and sleep better at night knowing your site — and your hard work — is safe no matter what the digital world throws your way.</p>
+
+
+
+
+
+<div class="spo" id="external-labels" aria-label="Related Labels"></div>
+
+<script>
+  function rak_info_Load(json) {
+    const labelsSet = new Set();
+    const posts = json.feed.entry;
+    if (!posts) return;
+
+    posts.forEach(post => {
+      if (post.category) {
+        post.category.forEach(cat => {
+          labelsSet.add(cat.term);
+        });
+      }
+    });
+
+    const labels = Array.from(labelsSet);
+    const container = document.getElementById("external-labels");
+
+    let html = '<section class="post-labels" aria-label="Label categories with image or video preview">';
+    html += '<ul style="list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:15px;">';
+
+    const imageUrl = "/foto.png";
+    const videoUrl = "/video.mp4";
+
+    let breadcrumbLd = {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": []
+    };
+
+    labels.forEach((label, index) => {
+      let staticPageUrl = "/indriani" + (index + 121).toString().padStart(0, '0') + "/";
+
+      let mediaElement = (index % 2 === 0)
+        ? `<img src="${imageUrl}" loading="lazy" width="100%" height="auto" style="border-radius:12px;" alt="${label}" title="${label}">`
+        : `<video src="${videoUrl}" loading="lazy" width="100%" height="auto" style="border-radius:12px;" muted autoplay loop playsinline title="${label}"></video>`;
+
+      html += `
+        <li style="display:inline-block;">
+          <a href="${staticPageUrl}" title="${label}" style="text-decoration:none;color:inherit;">
+            <figure style="margin:0;text-align:center;">
+              ${mediaElement}
+              <figcaption style="margin-top:5px;font-size:14px;">${label}</figcaption>
+            </figure>
+          </a>
+        </li>
+      `;
+
+      breadcrumbLd.itemListElement.push({
+        "@type": "ListItem",
+        "position": index + 1,
+        "name": label,
+        "item": location.origin + staticPageUrl
+      });
+    });
+
+    html += '</ul></section>';
+    container.innerHTML = html;
+
+    // Tambahkan Breadcrumb structured data ke <head>
+    const scriptLd = document.createElement("script");
+    scriptLd.type = "application/ld+json";
+    scriptLd.text = JSON.stringify(breadcrumbLd);
+    document.head.appendChild(scriptLd);
+  }
+</script>
+
+<script src="https://fazri.my.id/feeds/posts/default?start-index=478&max-results=3&alt=json-in-script&callback=rak_info_Load"></script>
+
+
+
