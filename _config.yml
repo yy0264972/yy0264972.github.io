@@ -4,7 +4,7 @@ title: "WebNestPulse"
 description: "Unlock the power of social platforms to engage with your audience and grow your brand."
 logo: "/favicon.ico"
 favicon: "/favicon.ico"
-url: "https://www.webnestpulse.my.id/"
+url: "https://www.webnestpulse.my.id"
 baseurl: ""
 include: ["_pages"]
 permalink: /:title/
