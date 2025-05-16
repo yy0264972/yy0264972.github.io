@@ -2,9 +2,9 @@
 name: "WebNestPulse"
 title: "WebNestPulse"
 description: "Unlock the power of social platforms to engage with your audience and grow your brand."
-logo: "/assets/images/logo.png"
-favicon: "/assets/images/logo.png"
-url: "https://idgsuwiwdj.github.io"
+logo: "/favicon.ico"
+favicon: "/favicon.ico"
+url: "https://www.webnestpulse.my.id/"
 baseurl: ""
 include: ["_pages"]
 permalink: /:title/
